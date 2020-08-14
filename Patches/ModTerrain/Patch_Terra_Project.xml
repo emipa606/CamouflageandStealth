@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Terra Project</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/TerrainDef[defName="FillerTerrain" or defName="FillerTerrain_Underwater" or defName="FillerStone" or defName="FillerStone_Underwater"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Stone</CamoType>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/TerrainDef[defName="HardwoodFloor"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Woodland</CamoType>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/TerrainDef[@ParentName="IceBase"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Arctic</CamoType>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/TerrainDef[@ParentName="TerrainSandBase"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Desert</CamoType>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/TerrainDef[@ParentName="MoreBridgeBase"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Urban</CamoType>
+            </li>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

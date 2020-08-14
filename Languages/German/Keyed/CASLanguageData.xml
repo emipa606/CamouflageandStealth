@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!--  Settings -->
+  <CompCamo.Name>Tarnung und Verborgenheit</CompCamo.Name>
+  <CompCamo.ShowOverlay>Overlay-Grafik (Anzeige der relativen Wirksamkeit) für Kolonisten anzeigen:</CompCamo.ShowOverlay>
+  <CompCamo.RelativeCamo>Camo Offsetting (Feinabstimmung) [%]:</CompCamo.RelativeCamo>
+  <CompCamo.DoCheckFlash>Schuß-Mündungsprüfung mit einbeziehen:</CompCamo.DoCheckFlash>
+  <CompCamo.DoCheckWeather>Wetterprüfung einbeziehen:</CompCamo.DoCheckWeather>
+  <CompCamo.DoCheckLight>Umgebungslichtprüfung einschließen:</CompCamo.DoCheckLight>
+  <CompCamo.DoCheckTemp>Temperaturprüfung einschließen:</CompCamo.DoCheckTemp>
+  <!--  Settings Debug options -->
+  <CompCamo.UseDebug>Wenden Sie die Entwickler-Debug-Tools an:</CompCamo.UseDebug>
+  <CompCamo.ShowMoteMsgs>Overhead-Debug-Mote-Meldungen zur Erkennung anzeigen:</CompCamo.ShowMoteMsgs>
+  <CompCamo.ShowTerrainLogs>Geländeprotokollierung für fehlende Mod-Erweiterung anzeigen:</CompCamo.ShowTerrainLogs>
+  <CompCamo.AllowNPCCamo>Erlaube Kolonisten, die nicht vom Spieler kontrolliert werden, Tarnung zu benutzen:</CompCamo.AllowNPCCamo>
+  <CompCamo.DebugTip>(Die folgenden Einstellungen sind Entwickler-Debug-Tools und nur im Entwicklungsmodus relevant.)</CompCamo.DebugTip>
+  <!--  Debug Testing Only -->
+  <CompCamo.CanSee>Kann gesehen werden: C({0}) E({1}) S({2})</CompCamo.CanSee>
+  <CompCamo.CannotSee>Kann nicht gesehen werden: C({0}) E({1}) S({2})</CompCamo.CannotSee>
+  <CompCamo.forceActive>Testing: Force all camo into Active mode</CompCamo.forceActive>
+  <CompCamo.forceStealth>Testing: Force all active camo to use stealth</CompCamo.forceStealth>
+  <CompCamo.forcePassive>Testing: Force all camo into passive mode</CompCamo.forcePassive>
+  <CompCamo.bestChance>Best base chance value:</CompCamo.bestChance>
+  <!--  Content -->
+  <CompCamo.CamouflageDesc>Tarnung: {1} ({0})</CompCamo.CamouflageDesc>
+  <CompCamo.ActiveCamoLabel>Aktive Tarnung</CompCamo.ActiveCamoLabel>
+  <CompCamo.ActiveCamoDesc>Klicken Sie hier, um den Status von Aktiver Tarnung zu ändern</CompCamo.ActiveCamoDesc>
+  <CompCamo.Stealth>Verborgenheit</CompCamo.Stealth>
+  <CompCamo.Active>Aktiv</CompCamo.Active>
+  <CompCamo.Undefined>Nicht definiert</CompCamo.Undefined>
+  <CompCamo.Arctic>Arktik</CompCamo.Arctic>
+  <CompCamo.Desert>Wüste</CompCamo.Desert>
+  <CompCamo.Jungle>Dschungel</CompCamo.Jungle>
+  <CompCamo.Stone>Digital</CompCamo.Stone>
+  <CompCamo.Urban>Urban</CompCamo.Urban>
+  <CompCamo.Woodland>Wald</CompCamo.Woodland>
+</LanguageData>

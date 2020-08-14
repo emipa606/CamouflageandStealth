@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!--  Settings -->
+  <CompCamo.Name>Camouflage and Stealth</CompCamo.Name>
+  <CompCamo.ShowOverlay>Show overlay graphic (indicating relative effectiveness) for colonists:</CompCamo.ShowOverlay>
+  <CompCamo.RelativeCamo>Camo Offsetting (Fine tuning) [%]:</CompCamo.RelativeCamo>
+  <CompCamo.DoCheckFlash>Include gunshot muzzleflash checking:</CompCamo.DoCheckFlash>
+  <CompCamo.DoCheckWeather>Include weather checking:</CompCamo.DoCheckWeather>
+  <CompCamo.DoCheckLight>Include ambient light checking:</CompCamo.DoCheckLight>
+  <CompCamo.DoCheckTemp>Include temperature checking:</CompCamo.DoCheckTemp>
+  <!--  Settings Debug options -->
+  <CompCamo.UseDebug>Apply DevMode debug tools:</CompCamo.UseDebug>
+  <CompCamo.ShowMoteMsgs>Show overhead debug mote messages regarding detection:</CompCamo.ShowMoteMsgs>
+  <CompCamo.ShowTerrainLogs>Show Terrain logging for missing mod extension:</CompCamo.ShowTerrainLogs>
+  <CompCamo.AllowNPCCamo>Allow non-player controlled pawns, camouflage use:</CompCamo.AllowNPCCamo>
+  <CompCamo.DebugTip>(The following settings are developer debug tools and only relevant when in dev mode)</CompCamo.DebugTip>
+  <!--  Debug Testing Only -->
+  <CompCamo.CanSee>Can See: C({0}) E({1}) S({2})</CompCamo.CanSee>
+  <CompCamo.CannotSee>Cannot See: C({0}) E({1}) S({2})</CompCamo.CannotSee>
+  <CompCamo.forceActive>Testing: Force all camo into Active mode</CompCamo.forceActive>
+  <CompCamo.forceStealth>Testing: Force all active camo to use stealth</CompCamo.forceStealth>
+  <CompCamo.forcePassive>Testing: Force all camo into passive mode</CompCamo.forcePassive>
+  <CompCamo.bestChance>Best base chance value:</CompCamo.bestChance>
+  <!--  Content -->
+  <CompCamo.CamouflageDesc>Camouflage: {1} ({0})</CompCamo.CamouflageDesc>
+  <CompCamo.ActiveCamoLabel>Active Camo</CompCamo.ActiveCamoLabel>
+  <CompCamo.ActiveCamoDesc>Click to change Active Camo state</CompCamo.ActiveCamoDesc>
+  <CompCamo.Stealth>Stealth</CompCamo.Stealth>
+  <CompCamo.Active>Active</CompCamo.Active>
+  <CompCamo.Undefined>Undefined</CompCamo.Undefined>
+  <CompCamo.Arctic>Arctic</CompCamo.Arctic>
+  <CompCamo.Desert>Desert</CompCamo.Desert>
+  <CompCamo.Jungle>Jungle</CompCamo.Jungle>
+  <CompCamo.Stone>Stone</CompCamo.Stone>
+  <CompCamo.Urban>Urban</CompCamo.Urban>
+  <CompCamo.Woodland>Woodland</CompCamo.Woodland>
+
+</LanguageData>

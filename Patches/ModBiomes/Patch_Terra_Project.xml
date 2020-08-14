@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Terra Project</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/BiomeDef[defName="CaveOasis" or defName="TunnelworldCave" or defName="CaveEntrance" or defName="InfestedMountains" or defName="CoralReef"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Stone</CamoType>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/BiomeDef[defName="AbyssalTrench" or defName="VolcanicIsland" or defName="TundraSkerries"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Stone</CamoType>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/BiomeDef[defName="DesertCanyon" or defName="DesertHighPlains" or defName="OceanBank" or defName="ArcticSeafloor"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Desert</CamoType>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/BiomeDef[defName="Savanna" or defName="DesertDunes" or defName="Oasis"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Desert</CamoType>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/BiomeDef[defName="FrozenLake" or defName="PackIce"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Arctic</CamoType>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/BiomeDef[defName="ColdBogDeep" or defName="TemperateMeadow" or defName="SpikeMountains" or defName="TidalFlats" or defName="TemperateSwampDeep"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Woodland</CamoType>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/BiomeDef[defName="KelpForest" or defName="Archipelago" or defName="TidalIslands"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Woodland</CamoType>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/BiomeDef[defName="MangroveForest" or defName="TropicalSwampDeep" or defName="Atoll"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Jungle</CamoType>
+            </li>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

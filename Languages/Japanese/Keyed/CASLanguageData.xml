@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!--  Settings -->
+  <CompCamo.Name>Camouflage and Stealth</CompCamo.Name>
+  <CompCamo.ShowOverlay>入植者の頭上に（相対的な効果を）表示：</CompCamo.ShowOverlay>
+  <CompCamo.RelativeCamo>迷彩オフセット(微調整）[%]：</CompCamo.RelativeCamo>
+  <CompCamo.DoCheckFlash>射撃時の発射光確認を含む：</CompCamo.DoCheckFlash>
+  <CompCamo.DoCheckWeather>天候の確認を含む：</CompCamo.DoCheckWeather>
+  <CompCamo.DoCheckLight>環境光の確認を含む：</CompCamo.DoCheckLight>
+  <CompCamo.DoCheckTemp>温度の確認を含む：</CompCamo.DoCheckTemp>
+  <!--  Settings Debug options -->
+  <CompCamo.UseDebug>開発者モードのデバッグツールを適用:</CompCamo.UseDebug>
+  <CompCamo.ShowMoteMsgs>発見について頭上にデバッグ文字を表示：</CompCamo.ShowMoteMsgs>
+  <CompCamo.ShowTerrainLogs>Mod拡張機能の不足を地形ログを表示：</CompCamo.ShowTerrainLogs>
+  <CompCamo.AllowNPCCamo>プレイヤー以外のポーンに迷彩を許可：</CompCamo.AllowNPCCamo>
+  <CompCamo.DebugTip>(以下の設定はデバッグツールで、開発者モード時にだけ関係する)</CompCamo.DebugTip>
+  <!--  Debug Testing Only -->
+  <CompCamo.CanSee>発見：C({0}) E({1}) S({2})</CompCamo.CanSee>
+  <CompCamo.CannotSee>未発見：C({0}) E({1}) S({2})</CompCamo.CannotSee>
+  <CompCamo.forceActive>テスト中：全迷彩を強制的に有効化</CompCamo.forceActive>
+  <CompCamo.forceStealth>テスト中：迷彩にステルスを強制有効化</CompCamo.forceStealth>
+  <CompCamo.forcePassive>テスト中：全迷彩をパッシブモード化</CompCamo.forcePassive>
+  <CompCamo.bestChance>基礎確率の最大値：</CompCamo.bestChance>
+  <!--  Content -->
+  <CompCamo.CamouflageDesc>迷彩：{1} ({0})</CompCamo.CamouflageDesc>
+  <CompCamo.ActiveCamoLabel>迷彩有効</CompCamo.ActiveCamoLabel>
+  <CompCamo.ActiveCamoDesc>クリックすると迷彩の有効/無効を変更します</CompCamo.ActiveCamoDesc>
+  <CompCamo.Stealth>ステルス</CompCamo.Stealth>
+  <CompCamo.Active>有効</CompCamo.Active>
+  <CompCamo.Undefined>不明</CompCamo.Undefined>
+  <CompCamo.Arctic>極地</CompCamo.Arctic>
+  <CompCamo.Desert>砂漠</CompCamo.Desert>
+  <CompCamo.Jungle>密林</CompCamo.Jungle>
+  <CompCamo.Stone>岩場</CompCamo.Stone>
+  <CompCamo.Urban>都市</CompCamo.Urban>
+  <CompCamo.Woodland>森林</CompCamo.Woodland>
+</LanguageData>
