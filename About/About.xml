@@ -18,19 +18,6 @@
   </modDependencies>
   <loadAfter>
     <li>brrainz.harmony</li>
-    <li>CP.Metal.Gear.Solid</li>
-    <li>RH.Faction.Militaires.Sans.Frontieres</li>
-    <li>Mlie.AdvancedBiomes</li>
-    <li>tkkntkkn.nps</li>
-    <li>SaucyPigeon.RealisticPlanets</li>
-    <li>Mlie.FencesAndFloors</li>
-    <li>Dubwise.Rimefeller</li>
-    <li>Mlie.Rimoleum</li>
-    <li>Mlie.RimPlas</li>
-    <li>bishop.smokeleafindustryreborn</li>
-    <li>Telkir.TMods.MoreFloors</li>
-    <li>trasheddt.industrialisation</li>
-    <li>Wemd.ExpandedFloors</li>
   </loadAfter>
   <description>Update of peladors mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=2019776293
