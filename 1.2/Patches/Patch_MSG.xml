@@ -81,7 +81,7 @@
                 <li>Apparel</li>
               </thingCategories>
               <recipeMaker>
-                <workSpeedStat>SmithingSpeed</workSpeedStat>
+                <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
                 <workSkill>Crafting</workSkill>
                 <effectWorking>Cremate</effectWorking>
                 <soundWorking>Recipe_Cremate</soundWorking>

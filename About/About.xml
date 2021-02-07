@@ -19,24 +19,27 @@
   <loadAfter>
     <li>brrainz.harmony</li>
   </loadAfter>
-  <description>Update of peladors mod
+  <description>[img]https://i.imgur.com/WAEzk68.png[/img]
+Update of peladors mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=2019776293
 
-[img]https://i.imgur.com/GYswkZ7.png[/img]
+[img]https://i.imgur.com/7Gzt3Rg.png[/img]
 
-Support-chat:
-https://invite.gg/mlie
-
-Non-steam version:
-https://github.com/emipa606/CamouflageandStealth
+[table]
+	[tr]
+		[td][url=https://invite.gg/Mlie][img]https://i.imgur.com/zdzzBrc.png[/img][/url][/td]
+		[td][url=https://github.com/emipa606/CamouflageandStealth][img]https://i.imgur.com/kTkpTOE.png[/img][/url][/td]
+	[/tr]
+[/table]
 	
---- Original Description ---
-Overview
+[img]https://i.imgur.com/NOW7jU1.png[/img]
+
+[h1]Overview[/h1] V1.1
 
 Framework for implementing Camouflage and Stealth (CAS) for apparel.
 
 
-Mod details
+[h1]Mod details[/h1]
 
 CAS is a framework for other mod authors to make use of the enable passive camouflage with apparel, active camouflage with apparel and/or observation sight improvements due to apparel or equipment.
 
@@ -48,43 +51,35 @@ The observation changes to equipment can help to modify sight capabilities to a 
 
 For further details regarding how the mod works and also details how to make modded items compatible with CAS please see the following PDF: (Recommended reading if a player or author wanting to patch their work).
 
-Camouflage and Stealth (CAS) Notes
-https://steamcommunity.com/linkfilter/?url=https://1drv.ms/b/s!Au3GsmKyQkDYh7o4tXi9G4mSOsuDyw?e=NlBHH0
+[url=https://1drv.ms/b/s!Au3GsmKyQkDYh7o4tXi9G4mSOsuDyw?e=NlBHH0]Camouflage and Stealth (CAS) Notes[/url]
 
 
-Mod Notes
+[h1]Mod Notes[/h1]
 
 I would recommend starting a new game with CAS as opposed to adding it to a save game, and with mods that add content associated with it. To remove the mod I would expect initially errors on subsequent loads that will subside.
 
 There are mod options to allow you to fine tune some of the Camouflage behaviour.
 
-Expansion Mod(s)
+[h1]Expansion Mod(s)[/h1]
 
-CAS: Power Armour
-https://steamcommunity.com/sharedfiles/filedetails/?id=2196958119
-CAS: Cataphract Armour
-https://steamcommunity.com/sharedfiles/filedetails/?id=2196958241
-CAS: Recon Armour
-https://steamcommunity.com/sharedfiles/filedetails/?id=2196958462
-CAS: Flak Armour
-https://steamcommunity.com/sharedfiles/filedetails/?id=2196958352
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2196958119]CAS: Power Armour[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2196958241]CAS: Cataphract Armour[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2196958462]CAS: Recon Armour[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2196958352]CAS: Flak Armour[/url]
 
-Compatibility
-*** Subject to Conversion ***
+[h1]Compatibility[/h1] *** Subject to Conversion ***
 
 The following PDF details mods that have been patched to accommodate terrain or biome related details:
 
-List of Supported mods
-https://1drv.ms/b/s!Au3GsmKyQkDYh7o5jsGeFTi1FQ63Kw?e=6dofhU
+[url=https://1drv.ms/b/s!Au3GsmKyQkDYh7o5jsGeFTi1FQ63Kw?e=6dofhU]List of Supported mods[/url]
 
-Multiplayer - Includes native support.
+[b]Multiplayer[/b] - Includes native support.
 
-Incompatibilities
+[h1]Incompatibilities[/h1]
 
 CE / CE:FT been informed that CE uses it's own line of sight and detection mechanics when shooting etc. So this mod will be incompatible with CE as a result.
 
-Initial Showcase
-*** Subject to Conversion ***
+[h1]Initial Showcase[/h1] *** Subject to Conversion ***
 
 To help showcase what the mod can do, development has been done in parallel with the mod author "Chicken Plucker". Who has patched and prepared mods to make use of CAS when loaded at the time of initial release. Credits also to CP with regards to advice offered during the mods development. Noteable mods for the showcase include:
 
@@ -94,11 +89,24 @@ Red Horse: Furniture
 Rimmu-Nation Clothing (original version)
 Spec Ops: The Line
 
-Credits
+[h1]Credits[/h1]
 
 German translation - Erdnussbrot
 Japanese translation - Proxyer
 
 
-(CC BY-NC-SA 4.0)</description>
+(CC BY-NC-SA 4.0)
+
+
+[img]https://i.imgur.com/Rs6T6cr.png[/img]
+[list]
+[*] See if the the error persists if you just have this mod and its requirements active.
+[*] If not, try adding your other mods until it happens again.
+[*] Post your error-log using [url=https://steamcommunity.com/workshop/filedetails/?id=818773962]HugsLib[/url] and command Ctrl+F12
+[*] For best support, please use the Discord-channel for error-reporting.
+[*] Do not report errors by making a discussion-thread, I get no notification of that.
+[*] If you have the solution for a problem, please post it to the GitHub repository.
+[/list]
+</description>
 </ModMetaData>
+
