@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!--  Settings -->
+  <CompCamo.Name>Camuflagem e furtividade</CompCamo.Name>
+  <CompCamo.ShowOverlay>Mostrar gráfico de sobreposição (indicando eficácia relativa) para colonos:</CompCamo.ShowOverlay>
+  <CompCamo.RelativeCamo>Compensação de Camo (ajuste fino) [%]:</CompCamo.RelativeCamo>
+  <CompCamo.DoCheckFlash>Inclua a verificação da claridade do tiro:</CompCamo.DoCheckFlash>
+  <CompCamo.DoCheckWeather>Inclua a verificação meteorológica:</CompCamo.DoCheckWeather>
+  <CompCamo.DoCheckLight>Incluir verificação de luz ambiente:</CompCamo.DoCheckLight>
+  <CompCamo.DoCheckTemp>Inclua a verificação de temperatura:</CompCamo.DoCheckTemp>
+  <!--  Settings Debug options -->
+  <CompCamo.UseDebug>Aplicar ferramentas de depuração Devmode:</CompCamo.UseDebug>
+  <CompCamo.ShowMoteMsgs>Mostrar mensagens de mote de depuração aérea sobre a detecção:</CompCamo.ShowMoteMsgs>
+  <CompCamo.ShowTerrainLogs>Mostrar terreno de loging para a falta de extensão de mod:</CompCamo.ShowTerrainLogs>
+  <CompCamo.AllowNPCCamo>Permitir peões controlados não-jogadores, uso de camuflagem:</CompCamo.AllowNPCCamo>
+  <CompCamo.DebugTip>(As seguintes configurações são ferramentas de depuração do desenvolvedor e apenas relevantes quando no modo DEV)</CompCamo.DebugTip>
+  <!--  Debug Testing Only -->
+  <CompCamo.CanSee>Pode ver: C({0}) E({1}) S({2})</CompCamo.CanSee>
+  <CompCamo.CannotSee>Não pode ver: C({0}) E({1}) S({2})</CompCamo.CannotSee>
+  <CompCamo.forceActive>Teste: Force todos os camo no modo ativo</CompCamo.forceActive>
+  <CompCamo.forceStealth>Teste: Força todos os camos ativos para usar stealth</CompCamo.forceStealth>
+  <CompCamo.forcePassive>Testando: Force todos os Camo no modo passivo</CompCamo.forcePassive>
+  <CompCamo.bestChance>Melhor valor de chance de base:</CompCamo.bestChance>
+  <!--  Content -->
+  <CompCamo.CamouflageDesc>Camuflar: {1} ({0})</CompCamo.CamouflageDesc>
+  <CompCamo.ActiveCamoLabel>Camuflagem ativa</CompCamo.ActiveCamoLabel>
+  <CompCamo.ActiveCamoDesc>Clique para alterar o estado ativo da camuflagem</CompCamo.ActiveCamoDesc>
+  <CompCamo.Stealth>Furtividade</CompCamo.Stealth>
+  <CompCamo.Active>Ativo</CompCamo.Active>
+  <CompCamo.Undefined>Indefinido</CompCamo.Undefined>
+  <CompCamo.Arctic>ártico</CompCamo.Arctic>
+  <CompCamo.Desert>Deserto</CompCamo.Desert>
+  <CompCamo.Jungle>Selva</CompCamo.Jungle>
+  <CompCamo.Stone>Pedra</CompCamo.Stone>
+  <CompCamo.Urban>Urbano</CompCamo.Urban>
+  <CompCamo.Woodland>Woodland.</CompCamo.Woodland>
+</LanguageData>
