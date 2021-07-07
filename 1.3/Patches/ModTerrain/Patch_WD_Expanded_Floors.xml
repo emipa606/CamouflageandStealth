@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>[WD] Expanded Floors</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/TerrainDef[@Name="BurnedFloorBase"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Urban</CamoType>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/TerrainDef[defName="WDMetalSheets" or defName="WDStripedMetalTile" or defName="WDPatternedMetalTile" or defName="WDHexMetalFloor"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Urban</CamoType>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/TerrainDef[defName="WDMetalCheckTile" or defName="WDSilverCheckTile" or defName="WDGoldCheckTile" or defName="WDPlasteelTile" or defName="WDPlasteelCheckTile"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Urban</CamoType>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/TerrainDef[defName="WDCheckSterileTile"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Urban</CamoType>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/TerrainDef[defName="WDStrawFloor"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Desert</CamoType>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/TerrainDef[@Name="WDJadeFloorBase"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Urban</CamoType>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/TerrainDef[@Name="FlagstoneBase"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Stone</CamoType>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/TerrainDef[@Name="WDRoughStoneTileBase"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Stone</CamoType>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/TerrainDef[@Name="WDStoneTileBase"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Stone</CamoType>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/TerrainDef[@Name="WDCheckStoneTileBase"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Stone</CamoType>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/TerrainDef[@Name="WDMosaicStoneFloorBase"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Stone</CamoType>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/TerrainDef[@Name="WDCheckStoneFloorBase"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Stone</CamoType>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/TerrainDef[@Name="WDPolishedStoneFloorBase"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Stone</CamoType>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/TerrainDef[defName="WDPlywoodFloor" or defName="WDWidePlanksFloor" or defName="WDCheckWoodenFloor" or defName="WDParquet"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Woodland</CamoType>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/TerrainDef[defName="WDMosaicWoodenFloor"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Woodland</CamoType>
+            </li>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

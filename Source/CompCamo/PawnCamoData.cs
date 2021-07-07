@@ -9,76 +9,109 @@ namespace CompCamo
     // Token: 0x0200000F RID: 15
     public class PawnCamoData : ThingComp
     {
+        // Token: 0x04000025 RID: 37
+        public int LastCamoCorrectTick;
+
+        // Token: 0x0400001D RID: 29
+        public float PawnArcticCamo;
+
+        // Token: 0x0400001E RID: 30
+        public float PawnDesertCamo;
+
+        // Token: 0x04000024 RID: 36
+        public List<string> PawnHidTickList = new List<string>();
+
+        // Token: 0x0400001F RID: 31
+        public float PawnJungleCamo;
+
+        // Token: 0x04000023 RID: 35
+        public float PawnnotDefinedCamo;
+
+        // Token: 0x04000020 RID: 32
+        public float PawnStoneCamo;
+
+        // Token: 0x04000022 RID: 34
+        public float PawnUrbanCamo;
+
+        // Token: 0x04000021 RID: 33
+        public float PawnWoodlandCamo;
+
+        // Token: 0x17000008 RID: 8
+        // (get) Token: 0x06000065 RID: 101 RVA: 0x000067B5 File Offset: 0x000049B5
+        private Pawn Pawn => (Pawn) parent;
+
         // Token: 0x06000060 RID: 96 RVA: 0x000062C8 File Offset: 0x000044C8
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Values.Look<float>(ref this.PawnArcticCamo, "PawnArcticCamo", 0f, false);
-            Scribe_Values.Look<float>(ref this.PawnDesertCamo, "PawnDesertCamo", 0f, false);
-            Scribe_Values.Look<float>(ref this.PawnJungleCamo, "PawnJungleCamo", 0f, false);
-            Scribe_Values.Look<float>(ref this.PawnStoneCamo, "PawnStoneCamo", 0f, false);
-            Scribe_Values.Look<float>(ref this.PawnWoodlandCamo, "PawnWoodlandCamo", 0f, false);
-            Scribe_Values.Look<float>(ref this.PawnUrbanCamo, "PawnUrbanCamo", 0f, false);
-            Scribe_Values.Look<float>(ref this.PawnnotDefinedCamo, "PawnnotDefinedCamo", 0f, false);
-            Scribe_Collections.Look<string>(ref this.PawnHidTickList, "PawnHidTickList", LookMode.Value, Array.Empty<object>());
-            Scribe_Values.Look<int>(ref this.LastCamoCorrectTick, "LastCamoCorrectTick", 0, false);
+            Scribe_Values.Look(ref PawnArcticCamo, "PawnArcticCamo");
+            Scribe_Values.Look(ref PawnDesertCamo, "PawnDesertCamo");
+            Scribe_Values.Look(ref PawnJungleCamo, "PawnJungleCamo");
+            Scribe_Values.Look(ref PawnStoneCamo, "PawnStoneCamo");
+            Scribe_Values.Look(ref PawnWoodlandCamo, "PawnWoodlandCamo");
+            Scribe_Values.Look(ref PawnUrbanCamo, "PawnUrbanCamo");
+            Scribe_Values.Look(ref PawnnotDefinedCamo, "PawnnotDefinedCamo");
+            Scribe_Collections.Look(ref PawnHidTickList, "PawnHidTickList", LookMode.Value, Array.Empty<object>());
+            Scribe_Values.Look(ref LastCamoCorrectTick, "LastCamoCorrectTick");
         }
 
         // Token: 0x06000061 RID: 97 RVA: 0x000063A0 File Offset: 0x000045A0
         public override void CompTick()
         {
             base.CompTick();
-            if (Controller.Settings.ShowOverlay && this.Pawn.IsColonist && this.Pawn.Drafted && Gen.IsHashIntervalTick(this.Pawn, 60))
+            if (!Controller.Settings.ShowOverlay || !Pawn.IsColonist || !Pawn.Drafted || !Pawn.IsHashIntervalTick(60))
             {
-                Pawn pawn = this.Pawn;
-                if ((pawn?.Map) != null && this.Pawn.Spawned && !this.Pawn.Map.fogGrid.IsFogged(this.Pawn.Position))
-                {
-                    CamoDrawTools.DrawCamoOverlay(this.Pawn);
-                }
+                return;
+            }
+
+            var pawn = Pawn;
+            if (pawn?.Map != null && Pawn.Spawned && !Pawn.Map.fogGrid.IsFogged(Pawn.Position))
+            {
+                CamoDrawTools.DrawCamoOverlay(Pawn);
             }
         }
 
         // Token: 0x06000062 RID: 98 RVA: 0x00006438 File Offset: 0x00004638
         public static void CorrectActiveApparel(Apparel apparel, Pawn pawn = null)
         {
-            Thing thing = ThingMaker.MakeThing(apparel.def, apparel.Stuff);
-            if (QualityUtility.TryGetQuality(apparel, out QualityCategory qualityCategory))
+            var thing = ThingMaker.MakeThing(apparel.def, apparel.Stuff);
+            if (apparel.TryGetQuality(out var qualityCategory))
             {
-                CompQuality compQuality = ThingCompUtility.TryGetComp<CompQuality>(thing);
-                if (compQuality != null)
-                {
-                    compQuality.SetQuality(qualityCategory, ArtGenerationContext.Colony);
-                }
+                var compQuality = thing.TryGetComp<CompQuality>();
+                compQuality?.SetQuality(qualityCategory, ArtGenerationContext.Colony);
             }
-            CompColorable compColorable = ThingCompUtility.TryGetComp<CompColorable>(apparel);
+
+            var compColorable = apparel.TryGetComp<CompColorable>();
             if (compColorable != null)
             {
-                CompColorable compColorable2 = ThingCompUtility.TryGetComp<CompColorable>(thing);
-                if (compColorable2 != null)
-                {
-                    compColorable2.Color = compColorable.Color;
-                }
+                var compColorable2 = thing.TryGetComp<CompColorable>();
+                compColorable2?.SetColor(compColorable.Color);
             }
+
             if (pawn != null)
             {
                 pawn.apparel.Remove(apparel);
-                apparel.Destroy(0);
-                pawn.apparel.Wear(thing as Apparel, true, false);
+                apparel.Destroy();
+                pawn.apparel.Wear(thing as Apparel);
                 return;
             }
-            if (apparel.Spawned)
+
+            if (!apparel.Spawned)
             {
-                IntVec3 intVec = IntVec3.Zero;
-                Map map = apparel?.Map;
-                if (map != null)
-                {
-                    intVec = apparel.Position;
-                }
-                apparel.Destroy(0);
-                if (intVec != IntVec3.Zero)
-                {
-                    GenSpawn.Spawn(thing, intVec, map, 0);
-                }
+                return;
+            }
+
+            var intVec = IntVec3.Zero;
+            var map = apparel.Map;
+            if (map != null)
+            {
+                intVec = apparel.Position;
+            }
+
+            apparel.Destroy();
+            if (intVec != IntVec3.Zero)
+            {
+                GenSpawn.Spawn(thing, intVec, map);
             }
         }
 
@@ -88,122 +121,79 @@ namespace CompCamo
             base.PostSpawnSetup(respawningAfterLoad);
             if (respawningAfterLoad)
             {
-                Pawn pawn = this.Pawn;
-                if ((pawn?.apparel) != null && this.Pawn.apparel.WornApparelCount > 0)
+                var pawn = Pawn;
+                if (pawn?.apparel != null && Pawn.apparel.WornApparelCount > 0)
                 {
-                    foreach (Apparel apparel in this.Pawn.apparel.WornApparel)
+                    foreach (var apparel in Pawn.apparel.WornApparel)
                     {
-                        CompGearCamo compGearCamo = ThingCompUtility.TryGetComp<CompGearCamo>(apparel);
-                        if (compGearCamo != null && compGearCamo.Props.ActiveCamoEff > 0f && compGearCamo.Props.CamoEnergyMax > 0f && apparel.GetType() != typeof(ActiveCamoApparel) && apparel.def.thingClass == typeof(ActiveCamoApparel))
+                        var compGearCamo = apparel.TryGetComp<CompGearCamo>();
+                        if (compGearCamo == null || !(compGearCamo.Props.ActiveCamoEff > 0f) ||
+                            !(compGearCamo.Props.CamoEnergyMax > 0f) ||
+                            apparel.GetType() == typeof(ActiveCamoApparel) ||
+                            apparel.def.thingClass != typeof(ActiveCamoApparel))
                         {
-                            PawnCamoData.CorrectActiveApparel(apparel, this.Pawn);
-                            break;
+                            continue;
                         }
+
+                        CorrectActiveApparel(apparel, Pawn);
+                        break;
                     }
                 }
             }
-            CamoGearUtility.CalcAndSetCamoEff(this.Pawn);
+
+            CamoGearUtility.CalcAndSetCamoEff(Pawn);
         }
 
         // Token: 0x06000064 RID: 100 RVA: 0x00006618 File Offset: 0x00004818
         public override string CompInspectStringExtra()
         {
-            if (CamoUtility.IsCamoActive(this.Pawn, out Apparel apparel))
+            if (CamoUtility.IsCamoActive(Pawn, out var apparel))
             {
-                if (apparel != null)
+                if (apparel == null)
                 {
-                    float activeCamoEff = ThingCompUtility.TryGetComp<CompGearCamo>(apparel).Props.ActiveCamoEff;
-                    string text = Translator.Translate("CompCamo.Active");
-                    if (ThingCompUtility.TryGetComp<CompGearCamo>(apparel).Props.StealthCamoChance > 0 && activeCamoEff > 0f)
-                    {
-                        text = Translator.Translate("CompCamo.Stealth");
-                    }
-                    return TranslatorFormattedStringExtensions.Translate("CompCamo.CamouflageDesc", text, GenText.ToStringPercent(activeCamoEff));
+                    return null;
                 }
+
+                var activeCamoEff = apparel.TryGetComp<CompGearCamo>().Props.ActiveCamoEff;
+                string text = "CompCamo.Active".Translate();
+                if (apparel.TryGetComp<CompGearCamo>().Props.StealthCamoChance > 0 && activeCamoEff > 0f)
+                {
+                    text = "CompCamo.Stealth".Translate();
+                }
+
+                return "CompCamo.CamouflageDesc".Translate(text, activeCamoEff.ToStringPercent());
             }
-            else if (CamoGearUtility.GetCurCamoEff(this.Pawn, out string a, out float num))
+
+            if (!CamoGearUtility.GetCurCamoEff(Pawn, out var a, out var num))
             {
-                string text2 = Translator.Translate("CompCamo.Undefined");
-                if (!(a == "Arctic"))
-                {
-                    if (!(a == "Desert"))
-                    {
-                        if (!(a == "Jungle"))
-                        {
-                            if (!(a == "Stone"))
-                            {
-                                if (!(a == "Urban"))
-                                {
-                                    if (a == "Woodland")
-                                    {
-                                        text2 = Translator.Translate("CompCamo.Woodland");
-                                    }
-                                }
-                                else
-                                {
-                                    text2 = Translator.Translate("CompCamo.Urban");
-                                }
-                            }
-                            else
-                            {
-                                text2 = Translator.Translate("CompCamo.Stone");
-                            }
-                        }
-                        else
-                        {
-                            text2 = Translator.Translate("CompCamo.Jungle");
-                        }
-                    }
-                    else
-                    {
-                        text2 = Translator.Translate("CompCamo.Desert");
-                    }
-                }
-                else
-                {
-                    text2 = Translator.Translate("CompCamo.Arctic");
-                }
-                return TranslatorFormattedStringExtensions.Translate("CompCamo.CamouflageDesc", text2, GenText.ToStringPercent(num));
+                return null;
             }
-            return null;
+
+            string text2 = "CompCamo.Undefined".Translate();
+            switch (a)
+            {
+                case "Arctic":
+                    text2 = "CompCamo.Arctic".Translate();
+                    break;
+                case "Desert":
+                    text2 = "CompCamo.Desert".Translate();
+                    break;
+                case "Jungle":
+                    text2 = "CompCamo.Jungle".Translate();
+                    break;
+                case "Stone":
+                    text2 = "CompCamo.Stone".Translate();
+                    break;
+                case "Urban":
+                    text2 = "CompCamo.Urban".Translate();
+                    break;
+                case "Woodland":
+                    text2 = "CompCamo.Woodland".Translate();
+                    break;
+            }
+
+            return "CompCamo.CamouflageDesc".Translate(text2, num.ToStringPercent());
         }
-
-        // Token: 0x17000008 RID: 8
-        // (get) Token: 0x06000065 RID: 101 RVA: 0x000067B5 File Offset: 0x000049B5
-        private Pawn Pawn
-        {
-            get
-            {
-                return (Pawn)this.parent;
-            }
-        }
-
-        // Token: 0x0400001D RID: 29
-        public float PawnArcticCamo;
-
-        // Token: 0x0400001E RID: 30
-        public float PawnDesertCamo;
-
-        // Token: 0x0400001F RID: 31
-        public float PawnJungleCamo;
-
-        // Token: 0x04000020 RID: 32
-        public float PawnStoneCamo;
-
-        // Token: 0x04000021 RID: 33
-        public float PawnWoodlandCamo;
-
-        // Token: 0x04000022 RID: 34
-        public float PawnUrbanCamo;
-
-        // Token: 0x04000023 RID: 35
-        public float PawnnotDefinedCamo;
-
-        // Token: 0x04000024 RID: 36
-        public List<string> PawnHidTickList = new List<string>();
-
-        // Token: 0x04000025 RID: 37
-        public int LastCamoCorrectTick;
 
         // Token: 0x02000021 RID: 33
         public class CompProperties_PawnCamoData : CompProperties
@@ -211,7 +201,7 @@ namespace CompCamo
             // Token: 0x06000091 RID: 145 RVA: 0x000072F7 File Offset: 0x000054F7
             public CompProperties_PawnCamoData()
             {
-                this.compClass = typeof(PawnCamoData);
+                compClass = typeof(PawnCamoData);
             }
         }
 
@@ -222,46 +212,60 @@ namespace CompCamo
             // Token: 0x06000092 RID: 146 RVA: 0x0000730F File Offset: 0x0000550F
             static Camo_Setup()
             {
-                PawnCamoData.Camo_Setup.Camo_Setup_Pawns();
+                Camo_Setup_Pawns();
             }
 
             // Token: 0x06000093 RID: 147 RVA: 0x00007316 File Offset: 0x00005516
             private static void Camo_Setup_Pawns()
             {
-                PawnCamoData.Camo_Setup.CamoSetup_Comp(typeof(PawnCamoData.CompProperties_PawnCamoData), (ThingDef def) => def.race != null);
+                CamoSetup_Comp(typeof(CompProperties_PawnCamoData), def => def.race != null);
             }
 
             // Token: 0x06000094 RID: 148 RVA: 0x00007348 File Offset: 0x00005548
             private static void CamoSetup_Comp(Type compType, Func<ThingDef, bool> qualifier)
             {
-                List<ThingDef> list = DefDatabase<ThingDef>.AllDefsListForReading.Where(qualifier).ToList();
-                GenList.RemoveDuplicates<ThingDef>(list);
-                foreach (ThingDef thingDef in list)
+                var list = DefDatabase<ThingDef>.AllDefsListForReading.Where(qualifier).ToList();
+                list.RemoveDuplicates();
+                foreach (var thingDef in list)
                 {
-                    if (thingDef.comps != null && !GenCollection.Any<CompProperties>(thingDef.comps, (Predicate<CompProperties>)((CompProperties c) => (object)((object)c).GetType() == compType)))
+                    if (thingDef.comps != null && !thingDef.comps.Any(c => (Type) (object) c.GetType() == compType))
                     {
-                        thingDef.comps.Add((CompProperties)(object)(CompProperties)Activator.CreateInstance(compType));
+                        thingDef.comps.Add((CompProperties) Activator.CreateInstance(compType));
                     }
-                    if (thingDef.IsApparel)
+
+                    if (!thingDef.IsApparel)
                     {
-                        if (GenCollection.Any<CompProperties>(thingDef.comps, (CompProperties c) => c.GetType() == typeof(CompProperties_GearCamo)))
+                        continue;
+                    }
+
+                    if (!thingDef.comps.Any(c => c.GetType() == typeof(CompProperties_GearCamo)))
+                    {
+                        continue;
+                    }
+
+                    if (thingDef.comps == null)
+                    {
+                        continue;
+                    }
+
+                    foreach (var compProperties in thingDef.comps)
+                    {
+                        if (compProperties.GetType() != typeof(CompProperties_GearCamo) ||
+                            !(((CompProperties_GearCamo) compProperties).ActiveCamoEff > 0f) ||
+                            !((compProperties as CompProperties_GearCamo).CamoEnergyMax > 0f) ||
+                            thingDef.thingClass != typeof(Apparel))
                         {
-                            foreach (CompProperties compProperties in thingDef.comps)
-                            {
-                                if (compProperties.GetType() == typeof(CompProperties_GearCamo) && (compProperties as CompProperties_GearCamo).ActiveCamoEff > 0f && (compProperties as CompProperties_GearCamo).CamoEnergyMax > 0f && thingDef.thingClass == typeof(Apparel))
-                                {
-                                    thingDef.thingClass = typeof(ActiveCamoApparel);
-                                    if (thingDef.tickerType != TickerType.Normal)
-                                    {
-                                        thingDef.tickerType = TickerType.Normal;
-                                    }
-                                }
-                            }
+                            continue;
+                        }
+
+                        thingDef.thingClass = typeof(ActiveCamoApparel);
+                        if (thingDef.tickerType != TickerType.Normal)
+                        {
+                            thingDef.tickerType = TickerType.Normal;
                         }
                     }
                 }
             }
         }
-
     }
 }

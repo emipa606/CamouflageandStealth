@@ -1,107 +1,29 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{72BE9D73-A0C4-4196-86A7-794B9E39AC1C}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CompCamo</RootNamespace>
-    <AssemblyName>CompCamo</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>..\..\1.2\Assemblies\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <OutputPath>..\..\1.3\Assemblies</OutputPath>
+    <TargetFramework>net472</TargetFramework>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <DebugType>None</DebugType>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lib.Harmony.2.0.2\lib\net472\0Harmony.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="0MultiplayerAPI, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RimWorld.MultiplayerAPI.0.2.0\lib\net472\0MultiplayerAPI.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.TextRenderingModule">
-      <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
+    <PackageReference Include="Krafs.Rimworld.Ref">
+       <Version>*</Version> 
+      <!--<Version>1.3.3052-beta</Version>-->
+      <ExcludeAssets>runtime</ExcludeAssets>
+      <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Lib.Harmony">
+      <Version>*</Version>
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="RimWorld.MultiplayerAPI">
+      <Version>*</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <AppDesigner Include="Properties\" />
+    <ProjectReference Include="..\StealthBox\StealthBox.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="ActiveCamoApparel.cs" />
-    <Compile Include="ApparelChanged_CamoPostPatch.cs" />
-    <Compile Include="BestAttackTarget_CamoPostPatch.cs" />
-    <Compile Include="CamoAIUtility.cs" />
-    <Compile Include="CamoDefGet.cs" />
-    <Compile Include="CamoDrawTools.cs" />
-    <Compile Include="CamoGearUtility.cs" />
-    <Compile Include="CamoPresetColour.cs" />
-    <Compile Include="CamoPresets.cs" />
-    <Compile Include="CamoUtility.cs" />
-    <Compile Include="CanHitTargetFrom_CamoPostPatch.cs" />
-    <Compile Include="CanSee_CamoPostPatch.cs" />
-    <Compile Include="CanWearTogether_ACPostPatch.cs" />
-    <Compile Include="CompCamoDefs.cs" />
-    <Compile Include="CompColorable_SetColor_PostPatch.cs" />
-    <Compile Include="CompGearCamo.cs" />
-    <Compile Include="CompProperties_GearCamo.cs" />
-    <Compile Include="Controller.cs" />
-    <Compile Include="FollowAndMeleeAttack_CamoPrePatch.cs" />
-    <Compile Include="GenerateStartingApparelFor_CamoPostPatch.cs" />
-    <Compile Include="Gizmo_EnergyActiveCamoStatus.cs" />
-    <Compile Include="GotoCell_CamoPrePatch_Goto.cs" />
-    <Compile Include="HarmonyPatching.cs" />
-    <Compile Include="MultiplayerSupport.cs" />
-    <Compile Include="PawnCamoData.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings.cs" />
-    <Compile Include="StealthyBox.cs" />
-    <Compile Include="TryFindCastPosition_CamoPostPatch.cs" />
-    <Compile Include="Wait_CheckForAutoAttack_CamoPrePatch.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\StealthBox\StealthBox.csproj">
-      <Project>{72BE9D73-A0C4-4196-86A7-794B9E39AC1E}</Project>
-      <Name>StealthBox</Name>
-      <Private>False</Private>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

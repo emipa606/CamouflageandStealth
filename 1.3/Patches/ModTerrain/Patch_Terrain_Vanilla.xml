@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationAddModExtension">
+        <xpath>/Defs/TerrainDef[defName="Ice"]</xpath>
+        <value>
+          <li Class="CompCamo.CompCamoDefs">
+            <CamoType>Arctic</CamoType>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationAddModExtension">
+        <xpath>/Defs/TerrainDef[defName="Sand" or defName="SoftSand"]</xpath>
+        <value>
+          <li Class="CompCamo.CompCamoDefs">
+            <CamoType>Desert</CamoType>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationAddModExtension">
+        <xpath>/Defs/TerrainDef[defName="Concrete" or defName="PavedTile"]</xpath>
+        <value>
+          <li Class="CompCamo.CompCamoDefs">
+            <CamoType>Stone</CamoType>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationAddModExtension">
+        <xpath>/Defs/TerrainDef[@Name="TileStoneBase"]</xpath>
+        <value>
+          <li Class="CompCamo.CompCamoDefs">
+            <CamoType>Stone</CamoType>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationAddModExtension">
+        <xpath>/Defs/TerrainDef[@Name="FlagstoneBase"]</xpath>
+        <value>
+          <li Class="CompCamo.CompCamoDefs">
+            <CamoType>Stone</CamoType>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationAddModExtension">
+        <xpath>/Defs/TerrainDef[defName="WoodPlankFloor"]</xpath>
+        <value>
+          <li Class="CompCamo.CompCamoDefs">
+            <CamoType>Woodland</CamoType>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationAddModExtension">
+        <xpath>/Defs/TerrainDef[defName="MetalTile" or defName="SilverTile" or defName="GoldTile" or defName="SterileTile"]</xpath>
+        <value>
+          <li Class="CompCamo.CompCamoDefs">
+            <CamoType>Urban</CamoType>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationAddModExtension">
+        <xpath>/Defs/TerrainDef[@Name="CarpetBase"]</xpath>
+        <value>
+          <li Class="CompCamo.CompCamoDefs">
+            <CamoType>Urban</CamoType>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationAddModExtension">
+        <xpath>/Defs/TerrainDef[defName="BurnedWoodPlankFloor" or defName="BurnedCarpet" or defName="BrokenAsphalt" or defName="Bridge"]</xpath>
+        <value>
+          <li Class="CompCamo.CompCamoDefs">
+            <CamoType>Urban</CamoType>
+          </li>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+</Patch>

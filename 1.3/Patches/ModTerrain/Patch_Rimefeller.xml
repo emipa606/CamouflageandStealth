@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Rimefeller</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/TerrainDef[@Name="RimefellerLinoBase"]</xpath>
+          <value>
+            <li Class="CompCamo.CompCamoDefs">
+              <CamoType>Urban</CamoType>
+            </li>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
   <name>Camouflage and Stealth (Continued)</name>
   <packageId>Mlie.CamouflageandStealth</packageId>
@@ -7,6 +7,7 @@
   <supportedVersions>
     <li>1.1</li>
     <li>1.2</li>
+    <li>1.3</li>
   </supportedVersions>
   <modDependencies>
     <li>
@@ -79,11 +80,11 @@ The following PDF details mods that have been patched to accommodate terrain or 
 
 [h1]Incompatibilities[/h1]
 
-CE / CE:FT been informed that CE uses it's own line of sight and detection mechanics when shooting etc. So this mod will be incompatible with CE as a result.
+CE / CE:FT been informed that CE uses it&apos;s own line of sight and detection mechanics when shooting etc. So this mod will be incompatible with CE as a result.
 
 [h1]Initial Showcase[/h1] *** Subject to Conversion ***
 
-To help showcase what the mod can do, development has been done in parallel with the mod author "Chicken Plucker". Who has patched and prepared mods to make use of CAS when loaded at the time of initial release. Credits also to CP with regards to advice offered during the mods development. Noteable mods for the showcase include:
+To help showcase what the mod can do, development has been done in parallel with the mod author &quot;Chicken Plucker&quot;. Who has patched and prepared mods to make use of CAS when loaded at the time of initial release. Credits also to CP with regards to advice offered during the mods development. Noteable mods for the showcase include:
 
 Cordis Die
 Metal Gear Solid: MGS
