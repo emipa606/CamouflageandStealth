@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
   <name>Camouflage and Stealth (Continued)</name>
   <packageId>Mlie.CamouflageandStealth</packageId>
@@ -20,22 +20,28 @@
   <loadAfter>
     <li>brrainz.harmony</li>
   </loadAfter>
-  <description>[img]https://i.imgur.com/WAEzk68.png[/img]
+  <description>[img]https://i.imgur.com/buuPQel.png[/img]
 Update of peladors mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=2019776293
 
 - Portuguese-Brazilian translation added, thanks Lucas559-noob
+- For detailed description, download the [url=https://github.com/emipa606/CamouflageandStealth/raw/main/Source/CamouflageAndStealthNotes.pdf]PDF[/url]
+- Also available is a [url= https://steamcommunity.com/workshop/discussions/18446744073709551615/4943253385021156834/?appid=294100]guide[/url] by 11Bullets
 
-[img]https://i.imgur.com/7Gzt3Rg.png[/img]
+[img]https://i.imgur.com/pufA0kM.png[/img]
 
 [table]
 	[tr]
 		[td][url=https://invite.gg/Mlie][img]https://i.imgur.com/zdzzBrc.png[/img][/url][/td]
 		[td][url=https://github.com/emipa606/CamouflageandStealth][img]https://i.imgur.com/kTkpTOE.png[/img][/url][/td]
-	[/tr]
+    [/tr]
+    [tr]
+        [td][img]https://i.imgur.com/kbYsPSO.png[/img][/td]
+        [td][img]https://i.imgur.com/Be8E2qJ.png[/img][/td]
+    [/tr]
 [/table]
 	
-[img]https://i.imgur.com/NOW7jU1.png[/img]
+[img]https://i.imgur.com/Z4GOv8H.png[/img]
 
 [h1]Overview[/h1] V1.1
 
@@ -80,11 +86,11 @@ The following PDF details mods that have been patched to accommodate terrain or 
 
 [h1]Incompatibilities[/h1]
 
-CE / CE:FT been informed that CE uses it&apos;s own line of sight and detection mechanics when shooting etc. So this mod will be incompatible with CE as a result.
+CE / CE:FT been informed that CE uses it's own line of sight and detection mechanics when shooting etc. So this mod will be incompatible with CE as a result.
 
 [h1]Initial Showcase[/h1] *** Subject to Conversion ***
 
-To help showcase what the mod can do, development has been done in parallel with the mod author &quot;Chicken Plucker&quot;. Who has patched and prepared mods to make use of CAS when loaded at the time of initial release. Credits also to CP with regards to advice offered during the mods development. Noteable mods for the showcase include:
+To help showcase what the mod can do, development has been done in parallel with the mod author "Chicken Plucker". Who has patched and prepared mods to make use of CAS when loaded at the time of initial release. Credits also to CP with regards to advice offered during the mods development. Noteable mods for the showcase include:
 
 Cordis Die
 Metal Gear Solid: MGS
@@ -101,7 +107,7 @@ Japanese translation - Proxyer
 (CC BY-NC-SA 4.0)
 
 
-[img]https://i.imgur.com/Rs6T6cr.png[/img]
+[img]https://i.imgur.com/PwoNOj4.png[/img]
 [list]
 [*] See if the the error persists if you just have this mod and its requirements active.
 [*] If not, try adding your other mods until it happens again.
@@ -110,6 +116,5 @@ Japanese translation - Proxyer
 [*] Do not report errors by making a discussion-thread, I get no notification of that.
 [*] If you have the solution for a problem, please post it to the GitHub repository.
 [/list]
-
 </description>
 </ModMetaData>
