@@ -1,25 +1,18 @@
 # CamouflageandStealth
 
-![Image](https://i.imgur.com/WAEzk68.png)
+![Image](https://i.imgur.com/buuPQel.png)
 
 Update of peladors mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=2019776293
 
 - Portuguese-Brazilian translation added, thanks Lucas559-noob
+- For detailed description, download the https://github.com/emipa606/CamouflageandStealth/raw/main/Source/CamouflageAndStealthNotes.pdf]PDF
+- Also available is a  https://steamcommunity.com/workshop/discussions/18446744073709551615/4943253385021156834/?appid=294100]guide by 11Bullets
 
-![Image](https://i.imgur.com/7Gzt3Rg.png)
+![Image](https://i.imgur.com/pufA0kM.png)
 
-
-[table]
-	[tr]
-		[td]https://invite.gg/Mlie]![Image](https://i.imgur.com/zdzzBrc.png)
-[/td]
-		[td]https://github.com/emipa606/CamouflageandStealth]![Image](https://i.imgur.com/kTkpTOE.png)
-[/td]
-	[/tr]
-[/table]
 	
-![Image](https://i.imgur.com/NOW7jU1.png)
+![Image](https://i.imgur.com/Z4GOv8H.png)
 
 
 # Overview
@@ -71,12 +64,12 @@ https://1drv.ms/b/s!Au3GsmKyQkDYh7o5jsGeFTi1FQ63Kw?e=6dofhU]List of Supported mo
 # Incompatibilities
 
 
-CE / CE:FT been informed that CE uses it&apos;s own line of sight and detection mechanics when shooting etc. So this mod will be incompatible with CE as a result.
+CE / CE:FT been informed that CE uses it's own line of sight and detection mechanics when shooting etc. So this mod will be incompatible with CE as a result.
 
 # Initial Showcase
  *** Subject to Conversion ***
 
-To help showcase what the mod can do, development has been done in parallel with the mod author &quot;Chicken Plucker&quot;. Who has patched and prepared mods to make use of CAS when loaded at the time of initial release. Credits also to CP with regards to advice offered during the mods development. Noteable mods for the showcase include:
+To help showcase what the mod can do, development has been done in parallel with the mod author "Chicken Plucker". Who has patched and prepared mods to make use of CAS when loaded at the time of initial release. Credits also to CP with regards to advice offered during the mods development. Noteable mods for the showcase include:
 
 Cordis Die
 Metal Gear Solid: MGS
@@ -94,7 +87,7 @@ Japanese translation - Proxyer
 (CC BY-NC-SA 4.0)
 
 
-![Image](https://i.imgur.com/Rs6T6cr.png)
+![Image](https://i.imgur.com/PwoNOj4.png)
 
 
 

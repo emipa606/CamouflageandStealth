@@ -1,30 +1,29 @@
-﻿using UnityEngine;
+using Mlie;
+using UnityEngine;
 using Verse;
 
-namespace CompCamo
+namespace CompCamo;
+
+public class Controller : Mod
 {
-    // Token: 0x0200001B RID: 27
-    public class Controller : Mod
+    public static Settings Settings;
+    public static string currentVersion;
+
+    public Controller(ModContentPack content) : base(content)
     {
-        // Token: 0x04000027 RID: 39
-        public static Settings Settings;
+        Settings = GetSettings<Settings>();
+        currentVersion =
+            VersionFromManifest.GetVersionFromModMetaData(
+                ModLister.GetActiveModWithIdentifier("Mlie.CamouflageandStealth"));
+    }
 
-        // Token: 0x06000080 RID: 128 RVA: 0x00006BC9 File Offset: 0x00004DC9
-        public Controller(ModContentPack content) : base(content)
-        {
-            Settings = GetSettings<Settings>();
-        }
+    public override string SettingsCategory()
+    {
+        return "CompCamo.Name".Translate();
+    }
 
-        // Token: 0x0600007E RID: 126 RVA: 0x00006BAB File Offset: 0x00004DAB
-        public override string SettingsCategory()
-        {
-            return "CompCamo.Name".Translate();
-        }
-
-        // Token: 0x0600007F RID: 127 RVA: 0x00006BBC File Offset: 0x00004DBC
-        public override void DoSettingsWindowContents(Rect canvas)
-        {
-            Settings.DoWindowContents(canvas);
-        }
+    public override void DoSettingsWindowContents(Rect canvas)
+    {
+        Settings.DoWindowContents(canvas);
     }
 }

@@ -1,43 +1,29 @@
-﻿using RimWorld;
+using RimWorld;
 using Verse;
 
-namespace CompCamo
+namespace CompCamo;
+
+public class CamoDefGet
 {
-    // Token: 0x0200000A RID: 10
-    public class CamoDefGet
+    public static string GetCamoDefBiome(BiomeDef biome)
     {
-        // Token: 0x06000053 RID: 83 RVA: 0x00005F24 File Offset: 0x00004124
-        public static string GetCamoDefBiome(BiomeDef biome)
+        if (!biome.HasModExtension<CompCamoDefs>())
         {
-            if (!biome.HasModExtension<CompCamoDefs>())
-            {
-                return "notDefined";
-            }
-
-            var text = biome.GetModExtension<CompCamoDefs>().CamoType;
-            if (CamoGearUtility.CamoTypes().Contains(text))
-            {
-                return text;
-            }
-
             return "notDefined";
         }
 
-        // Token: 0x06000054 RID: 84 RVA: 0x00005F60 File Offset: 0x00004160
-        public static string GetCamoDefTerrain(TerrainDef terrain)
+        var text = biome.GetModExtension<CompCamoDefs>().CamoType;
+        return CamoGearUtility.CamoTypes().Contains(text) ? text : "notDefined";
+    }
+
+    public static string GetCamoDefTerrain(TerrainDef terrain)
+    {
+        if (!terrain.HasModExtension<CompCamoDefs>())
         {
-            if (!terrain.HasModExtension<CompCamoDefs>())
-            {
-                return "notDefined";
-            }
-
-            var text = terrain.GetModExtension<CompCamoDefs>().CamoType;
-            if (CamoGearUtility.CamoTypes().Contains(text))
-            {
-                return text;
-            }
-
             return "notDefined";
         }
+
+        var text = terrain.GetModExtension<CompCamoDefs>().CamoType;
+        return CamoGearUtility.CamoTypes().Contains(text) ? text : "notDefined";
     }
 }

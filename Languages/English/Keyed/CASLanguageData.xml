@@ -34,4 +34,5 @@
   <CompCamo.Stone>Stone</CompCamo.Stone>
   <CompCamo.Urban>Urban</CompCamo.Urban>
   <CompCamo.Woodland>Woodland</CompCamo.Woodland>
+  <CompCamo.ModVersion>Installed mod-version: {0}</CompCamo.ModVersion>
 </LanguageData>
