@@ -1,5 +1,8 @@
 # Changelog for CamouflageandStealth
 
+1.4.2 - Updated binaries to the release version instead of the beta
+
+
 1.4.1 - Mod updated for 1.4 and passed autotests.
 Used DeepL to update translations for ChineseSimplified, French, German, Japanese, Russian
 
