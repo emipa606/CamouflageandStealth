@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using RimWorld;
 using Verse;
 
@@ -14,7 +12,7 @@ public class PawnCamoData : ThingComp
 
     public float PawnDesertCamo;
 
-    public List<string> PawnHidTickList = new List<string>();
+    public List<string> PawnHidTickList = [];
 
     public float PawnJungleCamo;
 
@@ -26,7 +24,18 @@ public class PawnCamoData : ThingComp
 
     public float PawnWoodlandCamo;
 
-    private Pawn Pawn => (Pawn)parent;
+    private Pawn Pawn
+    {
+        get
+        {
+            if (parent is Pawn pawn)
+            {
+                return pawn;
+            }
+
+            return null;
+        }
+    }
 
     public override void PostExposeData()
     {
@@ -38,7 +47,7 @@ public class PawnCamoData : ThingComp
         Scribe_Values.Look(ref PawnWoodlandCamo, "PawnWoodlandCamo");
         Scribe_Values.Look(ref PawnUrbanCamo, "PawnUrbanCamo");
         Scribe_Values.Look(ref PawnnotDefinedCamo, "PawnnotDefinedCamo");
-        Scribe_Collections.Look(ref PawnHidTickList, "PawnHidTickList", LookMode.Value, Array.Empty<object>());
+        Scribe_Collections.Look(ref PawnHidTickList, "PawnHidTickList", LookMode.Value, []);
         Scribe_Values.Look(ref LastCamoCorrectTick, "LastCamoCorrectTick");
     }
 
@@ -176,69 +185,5 @@ public class PawnCamoData : ThingComp
         }
 
         return "CompCamo.CamouflageDesc".Translate(text2, num.ToStringPercent());
-    }
-
-    public class CompProperties_PawnCamoData : CompProperties
-    {
-        public CompProperties_PawnCamoData()
-        {
-            compClass = typeof(PawnCamoData);
-        }
-    }
-
-    [StaticConstructorOnStartup]
-    private static class Camo_Setup
-    {
-        static Camo_Setup()
-        {
-            Camo_Setup_Pawns();
-        }
-
-        private static void Camo_Setup_Pawns()
-        {
-            CamoSetup_Comp(typeof(CompProperties_PawnCamoData), def => def.race != null);
-        }
-
-        private static void CamoSetup_Comp(Type compType, Func<ThingDef, bool> qualifier)
-        {
-            var list = DefDatabase<ThingDef>.AllDefsListForReading.Where(qualifier).ToList();
-            list.RemoveDuplicates();
-            foreach (var thingDef in list)
-            {
-                if (thingDef.comps != null && !thingDef.comps.Any(c => c.GetType() == compType))
-                {
-                    thingDef.comps.Add((CompProperties)Activator.CreateInstance(compType));
-                }
-
-                if (!thingDef.IsApparel)
-                {
-                    continue;
-                }
-
-                if (!thingDef.comps.Any(c => c.GetType() == typeof(CompProperties_GearCamo)))
-                {
-                    continue;
-                }
-
-                if (thingDef.comps == null)
-                {
-                    continue;
-                }
-
-                foreach (var compProperties in thingDef.comps)
-                {
-                    if (compProperties.GetType() != typeof(CompProperties_GearCamo) ||
-                        !(((CompProperties_GearCamo)compProperties).ActiveCamoEff > 0f) ||
-                        !((compProperties as CompProperties_GearCamo).CamoEnergyMax > 0f) ||
-                        thingDef.thingClass != typeof(Apparel))
-                    {
-                        continue;
-                    }
-
-                    thingDef.thingClass = typeof(ActiveCamoApparel);
-                    thingDef.tickerType = TickerType.Normal;
-                }
-            }
-        }
     }
 }

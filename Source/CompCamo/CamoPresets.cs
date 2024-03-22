@@ -8,8 +8,8 @@ public class CamoPresets
 {
     internal static List<string> GetCamoTags()
     {
-        return new List<string>
-        {
+        return
+        [
             "PassiveCamo_Arctic_Low",
             "PassiveCamo_Arctic_Med",
             "PassiveCamo_Arctic_High",
@@ -28,13 +28,13 @@ public class CamoPresets
             "PassiveCamo_Urban_Low",
             "PassiveCamo_Urban_Med",
             "PassiveCamo_Urban_High"
-        };
+        ];
     }
 
     internal static List<string> GetColourTags()
     {
-        return new List<string>
-        {
+        return
+        [
             "PassiveCamo_Black_Set",
             "PassiveCamo_White_Set",
             "PassiveCamo_Red_Set",
@@ -49,7 +49,7 @@ public class CamoPresets
             "PassiveCamo_Rainbow_Set",
             "PassiveCamo_Light_Set",
             "PassiveCamo_Dark_Set"
-        };
+        ];
     }
 
     public static float GetCamoPresetEff(Apparel apparel, string type)
@@ -649,9 +649,9 @@ public class CamoPresets
     internal static string GetTagValue(string valuesStr, int position)
     {
         char[] separator =
-        {
+        [
             '_'
-        };
+        ];
         var array = valuesStr.Split(separator);
         return array[position];
     }

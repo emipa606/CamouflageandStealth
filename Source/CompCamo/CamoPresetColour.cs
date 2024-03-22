@@ -17,8 +17,8 @@ public class CamoPresetColour
 
     public static List<Color> colourChoices()
     {
-        return new List<Color>
-        {
+        return
+        [
             Color.white,
             Color.black,
             Color.red,
@@ -30,7 +30,7 @@ public class CamoPresetColour
             Orange,
             Brown,
             Violet
-        };
+        ];
     }
 
     public static string GetClosestType(Apparel apparel)

@@ -2,7 +2,7 @@ using HarmonyLib;
 using Verse;
 using Verse.AI;
 
-namespace CompCamo;
+namespace CompCamo.Patches;
 
 [HarmonyPatch(typeof(JobDriver_Wait), "CheckForAutoAttack")]
 public class Wait_CheckForAutoAttack_CamoPrePatch

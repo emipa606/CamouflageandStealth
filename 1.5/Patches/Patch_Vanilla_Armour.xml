@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <!--  Tribal -->
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Apparel_TribalA"]/apparel/tags</xpath>
+        <value>
+          <li>PassiveCamo_Multi_Med</li>
+        </value>
+      </li>
+      <!--  Flak -->
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Apparel_FlakVest" or defName="Apparel_FlakPants" or defName="Apparel_FlakJacket"]/apparel/tags</xpath>
+        <value>
+          <li>PassiveCamo_Stone_Med</li>
+        </value>
+      </li>
+      <!--  Power Armour -->
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Apparel_PowerArmorHelmet" or defName="Apparel_PowerArmor"]/apparel/tags</xpath>
+        <value>
+          <li>PassiveCamo_Arctic_Med</li>
+        </value>
+      </li>
+      <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName="Apparel_PowerArmorHelmet"]/comps</xpath>
+        <match Class="PatchOperationConditional">
+          <xpath>/Defs/ThingDef[defName="Apparel_PowerArmorHelmet"]/comps/li[@Class="Observer.CompProperties_Observer"]</xpath>
+          <match Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[defName="Apparel_PowerArmorHelmet"]/comps/li[@Class="Observer.CompProperties_Observer"]</xpath>
+            <value>
+              <li Class="Observer.CompProperties_Observer">
+                <SightOffset>+0.05</SightOffset>
+              </li>
+            </value>
+          </match>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName="Apparel_PowerArmorHelmet"]/comps</xpath>
+            <value>
+              <li Class="Observer.CompProperties_Observer">
+                <SightOffset>+0.05</SightOffset>
+              </li>
+            </value>
+          </nomatch>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Apparel_PowerArmorHelmet"]</xpath>
+          <value>
+            <comps>
+              <li Class="Observer.CompProperties_Observer">
+                <SightOffset>+0.05</SightOffset>
+              </li>
+            </comps>
+          </value>
+        </nomatch>
+      </li>
+      <!--  Recon -->
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Apparel_ArmorHelmetRecon" or defName="Apparel_ArmorRecon"]/apparel/tags</xpath>
+        <value>
+          <li>PassiveCamo_Arctic_Med</li>
+        </value>
+      </li>
+      <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName="Apparel_ArmorHelmetRecon"]/comps</xpath>
+        <match Class="PatchOperationConditional">
+          <xpath>/Defs/ThingDef[defName="Apparel_ArmorHelmetRecon"]/comps/li[@Class="Observer.CompProperties_Observer"]</xpath>
+          <match Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[defName="Apparel_ArmorHelmetRecon"]/comps/li[@Class="Observer.CompProperties_Observer"]</xpath>
+            <value>
+              <li Class="Observer.CompProperties_Observer">
+                <SightOffset>+0.15</SightOffset>
+              </li>
+            </value>
+          </match>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName="Apparel_ArmorHelmetRecon"]/comps</xpath>
+            <value>
+              <li Class="Observer.CompProperties_Observer">
+                <SightOffset>+0.15</SightOffset>
+              </li>
+            </value>
+          </nomatch>
+        </match>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Apparel_ArmorHelmetRecon"]</xpath>
+          <value>
+            <comps>
+              <li Class="Observer.CompProperties_Observer">
+                <SightOffset>+0.15</SightOffset>
+              </li>
+            </comps>
+          </value>
+        </nomatch>
+      </li>
+    </operations>
+  </Operation>
+</Patch>

@@ -19,10 +19,10 @@ internal static class MultiplayerSupport
 
         MP.RegisterSyncMethod(typeof(ActiveCamoApparel), "ToggleActiveCamo");
         MethodInfo[] array =
-        {
+        [
             AccessTools.Method(typeof(CamoUtility), "Rnd100"),
             AccessTools.Method(typeof(ActiveCamoApparel), "Break")
-        };
+        ];
         foreach (var methodInfo in array)
         {
             FixRNG(methodInfo);

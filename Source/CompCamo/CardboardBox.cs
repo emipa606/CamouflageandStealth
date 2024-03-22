@@ -6,17 +6,17 @@ namespace StealthBox;
 
 public class CardboardBox : Apparel
 {
-    [NoTranslate] public static string SSBox = "SSBox";
+    [NoTranslate] public static readonly string SSBox = "SSBox";
 
-    [NoTranslate] public static string BoxGraphicRootPath = $"Things/Special/StealthBox/{SSBox}";
+    [NoTranslate] public static readonly string BoxGraphicRootPath = $"Things/Special/StealthBox/{SSBox}";
 
-    [NoTranslate] public string BoxGraphicEastPath = $"{BoxGraphicRootPath}_east";
+    [NoTranslate] public readonly string BoxGraphicEastPath = $"{BoxGraphicRootPath}_east";
 
-    [NoTranslate] public string BoxGraphicNorthPath = $"{BoxGraphicRootPath}_north";
+    [NoTranslate] public readonly string BoxGraphicNorthPath = $"{BoxGraphicRootPath}_north";
 
-    [NoTranslate] public string BoxGraphicSouthPath = $"{BoxGraphicRootPath}_south";
+    [NoTranslate] public readonly string BoxGraphicSouthPath = $"{BoxGraphicRootPath}_south";
 
-    [NoTranslate] public string BoxGraphicWestPath = $"{BoxGraphicRootPath}_west";
+    [NoTranslate] public readonly string BoxGraphicWestPath = $"{BoxGraphicRootPath}_west";
 
     public float DmgBoxKill => HitPoints;
 

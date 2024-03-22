@@ -2,7 +2,7 @@ using HarmonyLib;
 using Verse;
 using Verse.AI;
 
-namespace CompCamo;
+namespace CompCamo.Patches;
 
 [HarmonyPatch(typeof(AttackTargetFinder), "BestAttackTarget")]
 public class BestAttackTarget_CamoPostPatch

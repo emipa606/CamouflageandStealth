@@ -2,13 +2,13 @@ using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace StealthBox;
+namespace CompCamo.Patches;
 
 [HarmonyPatch(typeof(ApparelUtility), "CanWearTogether")]
 public class CanWearTogether_PostPatch
 {
     [HarmonyPostfix]
-    public static void PostFix(ref bool __result, ThingDef A, ThingDef B, BodyDef body)
+    public static void PostFix(ref bool __result, ThingDef A, ThingDef B)
     {
         if (!__result)
         {

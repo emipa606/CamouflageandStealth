@@ -2,14 +2,14 @@ using HarmonyLib;
 using UnityEngine;
 using Verse;
 
-namespace CompCamo;
+namespace CompCamo.Patches;
 
 [HarmonyPatch(typeof(CompColorableUtility), "SetColor")]
 public class CompColorable_SetColor_PostPatch
 {
     [HarmonyPostfix]
     [HarmonyPriority(0)]
-    public static void PostFix(Thing t, Color newColor, bool reportFailure = true)
+    public static void PostFix(Thing t)
     {
         if (!t.def.IsApparel || !t.def.defName.StartsWith("CASFlak"))
         {

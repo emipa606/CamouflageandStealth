@@ -1,14 +1,14 @@
 using HarmonyLib;
 using Verse;
 
-namespace CompCamo;
+namespace CompCamo.Patches;
 
 [HarmonyPatch(typeof(Verb), "CanHitTargetFrom")]
 public class CanHitTargetFrom_CamoPostPatch
 {
     [HarmonyPostfix]
     [HarmonyPriority(800)]
-    public static void PostFix(ref Verb __instance, ref bool __result, IntVec3 root, LocalTargetInfo targ)
+    public static void PostFix(ref Verb __instance, ref bool __result, LocalTargetInfo targ)
     {
         if (!__result || !targ.HasThing)
         {

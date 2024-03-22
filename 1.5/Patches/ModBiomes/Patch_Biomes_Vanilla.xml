@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationAddModExtension">
+        <xpath>/Defs/BiomeDef[defName="Tundra" or defName="IceSheet" or defName="SeaIce"]</xpath>
+        <value>
+          <li Class="CompCamo.CompCamoDefs">
+            <CamoType>Arctic</CamoType>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationAddModExtension">
+        <xpath>/Defs/BiomeDef[defName="AridShrubland" or defName="Desert" or defName="ExtremeDesert"]</xpath>
+        <value>
+          <li Class="CompCamo.CompCamoDefs">
+            <CamoType>Desert</CamoType>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationAddModExtension">
+        <xpath>/Defs/BiomeDef[defName="TropicalRainforest" or defName="TropicalSwamp"]</xpath>
+        <value>
+          <li Class="CompCamo.CompCamoDefs">
+            <CamoType>Jungle</CamoType>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationAddModExtension">
+        <xpath>/Defs/BiomeDef[defName="BorealForest" or defName="ColdBog" or defName="TemperateForest" or defName="TemperateSwamp"]</xpath>
+        <value>
+          <li Class="CompCamo.CompCamoDefs">
+            <CamoType>Woodland</CamoType>
+          </li>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+</Patch>

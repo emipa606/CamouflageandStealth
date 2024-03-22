@@ -3,7 +3,7 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 
-namespace CompCamo;
+namespace CompCamo.Patches;
 
 [HarmonyPatch(typeof(Toils_Goto), "GotoCell", typeof(TargetIndex), typeof(PathEndMode))]
 public class GotoCell_CamoPrePatch_Goto

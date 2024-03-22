@@ -1,17 +1,16 @@
-using System.Collections.Generic;
 using HarmonyLib;
 using RimWorld;
 using Verse;
+using PawnObserver = Observer.PawnObserver;
 
-namespace Observer;
+namespace CompCamo.Patches;
 
 [HarmonyPatch(typeof(PawnCapacityWorker_Sight), "CalculateCapacityLevel")]
 public class CalculateCapacityLevel_PostPatch
 {
     [HarmonyPostfix]
     [HarmonyPriority(800)]
-    public static void PostFix(ref PawnCapacityWorker_Sight __instance, ref float __result, HediffSet diffSet,
-        List<PawnCapacityUtility.CapacityImpactor> impactors = null)
+    public static void PostFix(ref float __result, HediffSet diffSet)
     {
         if (!(__result > 0f))
         {

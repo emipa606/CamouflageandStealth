@@ -171,7 +171,7 @@ public class CamoGearUtility
         notDefinedCamoEff = 0f;
         var list = new List<string>();
         var list2 = new List<string>();
-        if (pawn?.apparel != null && pawn.apparel.WornApparelCount > 0)
+        if (pawn?.apparel is { WornApparelCount: > 0 })
         {
             foreach (var apparel in pawn.apparel.WornApparel)
             {
@@ -341,18 +341,18 @@ public class CamoGearUtility
     internal static string GetStrValue(string valuesStr, int position)
     {
         char[] separator =
-        {
+        [
             ';'
-        };
+        ];
         return valuesStr.Split(separator)[position];
     }
 
     internal static int GetIntValue(string valuesStr, int position)
     {
         char[] separator =
-        {
+        [
             ';'
-        };
+        ];
         var array = valuesStr.Split(separator);
         try
         {

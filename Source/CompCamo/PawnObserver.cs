@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using Verse;
 
 namespace Observer;
@@ -8,7 +7,18 @@ public class PawnObserver : ThingComp
 {
     public float PawnSightOffset;
 
-    private Pawn Pawn => (Pawn)parent;
+    private Pawn Pawn
+    {
+        get
+        {
+            if (parent is Pawn pawn)
+            {
+                return pawn;
+            }
+
+            return null;
+        }
+    }
 
     public override void PostExposeData()
     {
@@ -25,7 +35,6 @@ public class PawnObserver : ThingComp
         }
     }
 
-
     public override void PostSpawnSetup(bool respawningAfterLoad)
     {
         base.PostSpawnSetup(respawningAfterLoad);
@@ -38,7 +47,7 @@ public class PawnObserver : ThingComp
         var num2 = 0f;
         var num3 = 0f;
         var num4 = 0.25f;
-        if (pawn != null)
+        if (pawn is not null)
         {
             if (pawn.apparel is { WornApparelCount: > 0 })
             {
@@ -108,40 +117,5 @@ public class PawnObserver : ThingComp
         }
 
         pawnObserver.PawnSightOffset = num2 + num3;
-    }
-
-    public class CompProperties_PawnObserver : CompProperties
-    {
-        public CompProperties_PawnObserver()
-        {
-            compClass = typeof(PawnObserver);
-        }
-    }
-
-    [StaticConstructorOnStartup]
-    private static class Observer_Setup
-    {
-        static Observer_Setup()
-        {
-            Observer_Setup_Pawns();
-        }
-
-        private static void Observer_Setup_Pawns()
-        {
-            ObserverSetup_Comp(typeof(CompProperties_PawnObserver), def => def.race != null);
-        }
-
-        private static void ObserverSetup_Comp(Type compType, Func<ThingDef, bool> qualifier)
-        {
-            var list = DefDatabase<ThingDef>.AllDefsListForReading.Where(qualifier).ToList();
-            list.RemoveDuplicates();
-            foreach (var item in list)
-            {
-                if (item.comps != null && !item.comps.Any(c => c.GetType() == compType))
-                {
-                    item.comps.Add((CompProperties)Activator.CreateInstance(compType));
-                }
-            }
-        }
     }
 }

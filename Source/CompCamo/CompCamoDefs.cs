@@ -4,5 +4,5 @@ namespace CompCamo;
 
 public class CompCamoDefs : DefModExtension
 {
-    public string CamoType = "notDefined";
+    public readonly string CamoType = "notDefined";
 }

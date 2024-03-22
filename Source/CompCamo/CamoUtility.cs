@@ -8,17 +8,17 @@ namespace CompCamo;
 
 public class CamoUtility
 {
-    public static float minCamoDist = 1f;
+    public static readonly float minCamoDist = 1f;
 
-    public static float maxCamoDist = 60f;
+    public static readonly float maxCamoDist = 60f;
 
-    public static float ACminCamoDist = 5f;
+    public static readonly float ACminCamoDist = 5f;
 
-    public static float ACmaxCamoDist = 60f;
+    public static readonly float ACmaxCamoDist = 60f;
 
-    public static float NotPossibleMinDist = 2f;
+    public static readonly float NotPossibleMinDist = 2f;
 
-    public static int TickElapse = 300;
+    public static readonly int TickElapse = 300;
 
     public static bool IsCamoActive(Pawn target, out Apparel ACItem)
     {
@@ -222,7 +222,7 @@ public class CamoUtility
                 continue;
             }
 
-            var unused = target.thingIDNumber;
+            _ = target.thingIDNumber;
             if (intValue != target.thingIDNumber)
             {
                 continue;
@@ -269,7 +269,7 @@ public class CamoUtility
                     continue;
                 }
 
-                var unused = target.thingIDNumber;
+                _ = target.thingIDNumber;
                 if (intValue == target.thingIDNumber)
                 {
                     b = true;
@@ -673,35 +673,35 @@ public class CamoUtility
         }
 
         var text2 = text;
-        bool flag3;
+        bool isPawn;
         if (thing is not Pawn pawn)
         {
-            flag3 = false;
+            isPawn = false;
         }
         else
         {
             var jobs = pawn.jobs;
-            flag3 = jobs?.curJob != null;
+            isPawn = jobs?.curJob != null;
         }
 
-        if (flag3)
+        if (isPawn)
         {
             text2 = $"{text2}, CJ: {((Pawn)thing).jobs.curJob.def.defName}";
             var str = text2;
             var str2 = ", ET:";
-            bool flag4;
+            bool isOtherPawn;
             if (thing is not Pawn pawn2)
             {
-                flag4 = null != null;
+                isOtherPawn = false;
             }
             else
             {
                 var mindState = pawn2.mindState;
-                flag4 = mindState?.enemyTarget != null;
+                isOtherPawn = mindState?.enemyTarget != null;
             }
 
             string str3;
-            if (!flag4)
+            if (!isOtherPawn)
             {
                 str3 = "null";
             }
@@ -714,19 +714,19 @@ public class CamoUtility
             text2 = str + str2 + str3;
             var str4 = text2;
             var str5 = ", MT:";
-            bool flag5;
+            bool isAnotherPawn;
             if (thing is not Pawn pawn3)
             {
-                flag5 = null != null;
+                isAnotherPawn = false;
             }
             else
             {
                 var mindState2 = pawn3.mindState;
-                flag5 = mindState2?.meleeThreat != null;
+                isAnotherPawn = mindState2?.meleeThreat != null;
             }
 
             string str6;
-            if (!flag5)
+            if (!isAnotherPawn)
             {
                 str6 = "null";
             }

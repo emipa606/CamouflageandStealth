@@ -9,6 +9,11 @@ public class StealthyBox
     public static bool IsWearingStealthBox(Pawn pawn, out Apparel box)
     {
         box = null;
+        if (pawn == null)
+        {
+            return false;
+        }
+
         if (pawn is { Map: null, Spawned: true } || pawn.apparel is not { WornApparelCount: > 0 })
         {
             return false;

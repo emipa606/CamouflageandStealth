@@ -2,13 +2,13 @@ using System.Reflection;
 using HarmonyLib;
 using Verse;
 
-namespace StealthBox;
+namespace CompCamo.Patches;
 
 [StaticConstructorOnStartup]
 internal static class HarmonyPatching
 {
     static HarmonyPatching()
     {
-        new Harmony("com.Pelador.RW.Stealthbox").PatchAll(Assembly.GetExecutingAssembly());
+        new Harmony("com.Pelador.RW.CompCamo").PatchAll(Assembly.GetExecutingAssembly());
     }
 }
