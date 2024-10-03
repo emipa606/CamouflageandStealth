@@ -5,12 +5,11 @@ using Verse.AI;
 
 namespace CompCamo.Patches;
 
-[HarmonyPatch(typeof(Toils_Goto), "GotoCell", typeof(TargetIndex), typeof(PathEndMode))]
-public class GotoCell_CamoPrePatch_Goto
+[HarmonyPatch(typeof(Toils_Goto), nameof(Toils_Goto.GotoCell), typeof(TargetIndex), typeof(PathEndMode))]
+public class Toils_Goto_GotoCell
 {
-    [HarmonyPrefix]
     [HarmonyPriority(800)]
-    public static bool PreFix(ref Toil __result, TargetIndex ind, PathEndMode peMode)
+    public static bool Prefix(ref Toil __result, TargetIndex ind, PathEndMode peMode)
     {
         var toil = new Toil();
         toil.initAction = delegate

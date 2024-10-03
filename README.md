@@ -1,4 +1,4 @@
-# CamouflageandStealth
+# [Camouflage and Stealth (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2196949737)
 
 ![Image](https://i.imgur.com/buuPQel.png)
 
@@ -6,14 +6,12 @@ Update of peladors mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=2019776293
 
 - Portuguese-Brazilian translation added, thanks Lucas559-noob
-- For detailed description, download the https://github.com/emipa606/CamouflageandStealth/raw/main/Source/CamouflageAndStealthNotes.pdf]PDF
-- Also available is a  https://steamcommunity.com/workshop/discussions/18446744073709551615/4943253385021156834/?appid=294100]guide by 11Bullets
+- For detailed description, download the [PDF](https://github.com/emipa606/CamouflageandStealth/raw/main/Source/CamouflageAndStealthNotes.pdf)
+- Also available is a [guide]( https://steamcommunity.com/workshop/discussions/18446744073709551615/4943253385021156834/?appid=294100) by 11Bullets
 
 ![Image](https://i.imgur.com/pufA0kM.png)
-
 	
 ![Image](https://i.imgur.com/Z4GOv8H.png)
-
 
 # Overview
  V1.1
@@ -34,7 +32,7 @@ The observation changes to equipment can help to modify sight capabilities to a 
 
 For further details regarding how the mod works and also details how to make modded items compatible with CAS please see the following PDF: (Recommended reading if a player or author wanting to patch their work).
 
-https://1drv.ms/b/s!Au3GsmKyQkDYh7o4tXi9G4mSOsuDyw?e=NlBHH0]Camouflage and Stealth (CAS) Notes
+[Camouflage and Stealth (CAS) Notes](https://1drv.ms/b/s!Au3GsmKyQkDYh7o4tXi9G4mSOsuDyw?e=NlBHH0)
 
 
 # Mod Notes
@@ -47,17 +45,17 @@ There are mod options to allow you to fine tune some of the Camouflage behaviour
 # Expansion Mod(s)
 
 
-https://steamcommunity.com/sharedfiles/filedetails/?id=2196958119]CAS: Power Armour
-https://steamcommunity.com/sharedfiles/filedetails/?id=2196958241]CAS: Cataphract Armour
-https://steamcommunity.com/sharedfiles/filedetails/?id=2196958462]CAS: Recon Armour
-https://steamcommunity.com/sharedfiles/filedetails/?id=2196958352]CAS: Flak Armour
+[CAS: Power Armour](https://steamcommunity.com/sharedfiles/filedetails/?id=2196958119)
+[CAS: Cataphract Armour](https://steamcommunity.com/sharedfiles/filedetails/?id=2196958241)
+[CAS: Recon Armour](https://steamcommunity.com/sharedfiles/filedetails/?id=2196958462)
+[CAS: Flak Armour](https://steamcommunity.com/sharedfiles/filedetails/?id=2196958352)
 
 # Compatibility
  *** Subject to Conversion ***
 
 The following PDF details mods that have been patched to accommodate terrain or biome related details:
 
-https://1drv.ms/b/s!Au3GsmKyQkDYh7o5jsGeFTi1FQ63Kw?e=6dofhU]List of Supported mods
+[List of Supported mods](https://1drv.ms/b/s!Au3GsmKyQkDYh7o5jsGeFTi1FQ63Kw?e=6dofhU)
 
 **Multiplayer** - Includes native support.
 
@@ -93,13 +91,12 @@ Japanese translation - Proxyer
 
 -  See if the the error persists if you just have this mod and its requirements active.
 -  If not, try adding your other mods until it happens again.
--  Post your error-log using https://steamcommunity.com/workshop/filedetails/?id=818773962]HugsLib or the standalone https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404]Uploader and command Ctrl+F12
+-  Post your error-log using [HugsLib](https://steamcommunity.com/workshop/filedetails/?id=818773962) or the standalone [Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404) and command Ctrl+F12
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
--  Use https://github.com/RimSort/RimSort/releases/latest]RimSort to sort your mods
+-  Use [RimSort](https://github.com/RimSort/RimSort/releases/latest) to sort your mods
 
 
 
-https://steamcommunity.com/sharedfiles/filedetails/changelog/2196949737]![Image](https://img.shields.io/github/v/release/emipa606/CamouflageandStealth?label=latest%20version&style=plastic&color=9f1111&labelColor=black)
-
+[![Image](https://img.shields.io/github/v/release/emipa606/CamouflageandStealth?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2196949737)

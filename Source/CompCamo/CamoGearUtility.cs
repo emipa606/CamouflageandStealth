@@ -401,13 +401,36 @@ public class CamoGearUtility
 
     internal static string GetCamoType(Pawn pawn)
     {
+        var position = pawn.Position;
+        var map = pawn.Map;
+
+        if (position == IntVec3.Invalid)
+        {
+            position = pawn.PositionHeld;
+        }
+
+        if (map == null)
+        {
+            map = pawn.MapHeld;
+        }
+
+        if (map == null)
+        {
+            return "notDefined";
+        }
+
+        if (position == IntVec3.Invalid)
+        {
+            return CamoDefGet.GetCamoDefBiome(map.Biome);
+        }
+
         var text = "notDefined";
-        if (text == "notDefined" && pawn.Position.GetSnowDepth(pawn.Map) >= 0.25f)
+        if (position.GetSnowDepth(map) >= 0.25f)
         {
             return "Arctic";
         }
 
-        var terrain = pawn.Position.GetTerrain(pawn.Map);
+        var terrain = position.GetTerrain(map);
         if (text == "notDefined" && terrain != null)
         {
             if (terrain.smoothedTerrain != null ||
@@ -424,14 +447,14 @@ public class CamoGearUtility
             }
         }
 
-        if (text == "notDefined" && !pawn.Position.UsesOutdoorTemperature(pawn.Map))
+        if (text == "notDefined" && !position.UsesOutdoorTemperature(map))
         {
             return "Urban";
         }
 
         if (text == "notDefined")
         {
-            text = CamoDefGet.GetCamoDefBiome(pawn.Map.Biome);
+            text = CamoDefGet.GetCamoDefBiome(map.Biome);
         }
 
         return text;

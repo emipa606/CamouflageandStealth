@@ -3,12 +3,11 @@ using Verse;
 
 namespace CompCamo.Patches;
 
-[HarmonyPatch(typeof(Verb), "CanHitTargetFrom")]
-public class CanHitTargetFrom_CamoPostPatch
+[HarmonyPatch(typeof(Verb), nameof(Verb.CanHitTargetFrom))]
+public class Verb_CanHitTargetFrom
 {
-    [HarmonyPostfix]
     [HarmonyPriority(800)]
-    public static void PostFix(ref Verb __instance, ref bool __result, LocalTargetInfo targ)
+    public static void Postfix(ref Verb __instance, ref bool __result, LocalTargetInfo targ)
     {
         if (!__result || !targ.HasThing)
         {

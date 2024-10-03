@@ -47,7 +47,7 @@ public class PawnCamoData : ThingComp
         Scribe_Values.Look(ref PawnWoodlandCamo, "PawnWoodlandCamo");
         Scribe_Values.Look(ref PawnUrbanCamo, "PawnUrbanCamo");
         Scribe_Values.Look(ref PawnnotDefinedCamo, "PawnnotDefinedCamo");
-        Scribe_Collections.Look(ref PawnHidTickList, "PawnHidTickList", LookMode.Value, []);
+        Scribe_Collections.Look(ref PawnHidTickList, "PawnHidTickList", LookMode.Value);
         Scribe_Values.Look(ref LastCamoCorrectTick, "LastCamoCorrectTick");
     }
 

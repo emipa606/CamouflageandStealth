@@ -5,13 +5,12 @@ using Verse.AI;
 
 namespace CompCamo.Patches;
 
-[HarmonyPatch(typeof(Toils_Combat), "FollowAndMeleeAttack", typeof(TargetIndex), typeof(TargetIndex),
+[HarmonyPatch(typeof(Toils_Combat), nameof(Toils_Combat.FollowAndMeleeAttack), typeof(TargetIndex), typeof(TargetIndex),
     typeof(Action))]
-public class FollowAndMeleeAttack_CamoPrePatch
+public class Toils_Combat_FollowAndMeleeAttack
 {
-    [HarmonyPrefix]
     [HarmonyPriority(800)]
-    public static bool PreFix(ref Toil __result, TargetIndex targetInd, Action hitAction)
+    public static bool Prefix(ref Toil __result, TargetIndex targetInd, Action hitAction)
     {
         var followAndAttack = new Toil();
         followAndAttack.tickAction = delegate

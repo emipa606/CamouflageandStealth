@@ -4,12 +4,11 @@ using Verse;
 
 namespace CompCamo.Patches;
 
-[HarmonyPatch(typeof(CompColorableUtility), "SetColor")]
-public class CompColorable_SetColor_PostPatch
+[HarmonyPatch(typeof(CompColorableUtility), nameof(CompColorableUtility.SetColor))]
+public class CompColorableUtility_SetColor
 {
-    [HarmonyPostfix]
     [HarmonyPriority(0)]
-    public static void PostFix(Thing t)
+    public static void Postfix(Thing t)
     {
         if (!t.def.IsApparel || !t.def.defName.StartsWith("CASFlak"))
         {

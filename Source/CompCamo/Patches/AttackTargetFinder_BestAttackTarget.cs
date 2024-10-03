@@ -4,12 +4,11 @@ using Verse.AI;
 
 namespace CompCamo.Patches;
 
-[HarmonyPatch(typeof(AttackTargetFinder), "BestAttackTarget")]
-public class BestAttackTarget_CamoPostPatch
+[HarmonyPatch(typeof(AttackTargetFinder), nameof(AttackTargetFinder.BestAttackTarget))]
+public class AttackTargetFinder_BestAttackTarget
 {
-    [HarmonyPostfix]
     [HarmonyPriority(0)]
-    public static void PostFix(ref IAttackTarget __result, IAttackTargetSearcher searcher)
+    public static void Postfix(ref IAttackTarget __result, IAttackTargetSearcher searcher)
     {
         if (__result is not Pawn pawn)
         {

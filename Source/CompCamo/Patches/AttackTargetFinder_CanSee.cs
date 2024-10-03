@@ -4,12 +4,11 @@ using Verse.AI;
 
 namespace CompCamo.Patches;
 
-[HarmonyPatch(typeof(AttackTargetFinder), "CanSee")]
-public class CanSee_CamoPostPatch
+[HarmonyPatch(typeof(AttackTargetFinder), nameof(AttackTargetFinder.CanSee))]
+public class AttackTargetFinder_CanSee
 {
-    [HarmonyPostfix]
     [HarmonyPriority(800)]
-    public static void PostFix(ref bool __result, Thing seer, Thing target)
+    public static void Postfix(ref bool __result, Thing seer, Thing target)
     {
         if (__result && target != null && seer != null && target.Spawned && seer.Spawned && target.Map != null &&
             seer.Map != null && target.Map == seer.Map && target is Pawn pawn && seer is Pawn seer1 &&

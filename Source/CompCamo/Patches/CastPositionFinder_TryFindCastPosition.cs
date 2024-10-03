@@ -4,12 +4,11 @@ using Verse.AI;
 
 namespace CompCamo;
 
-[HarmonyPatch(typeof(CastPositionFinder), "TryFindCastPosition")]
-public class TryFindCastPosition_CamoPostPatch
+[HarmonyPatch(typeof(CastPositionFinder), nameof(CastPositionFinder.TryFindCastPosition))]
+public class CastPositionFinder_TryFindCastPosition
 {
-    [HarmonyPrefix]
     [HarmonyPriority(800)]
-    public static bool PreFix(ref bool __result, CastPositionRequest newReq, out IntVec3 dest)
+    public static bool Prefix(ref bool __result, CastPositionRequest newReq, out IntVec3 dest)
     {
         dest = IntVec3.Invalid;
         var caster = newReq.caster;

@@ -189,7 +189,8 @@ public class CamoUtility
             return false;
         }
 
-        return seer.Position == target.Position || seer.Position.InHorDistOf(target.Position, NotPossibleMinDist);
+        return seer.Position == target.Position ||
+               seer.Position.InHorDistOf(target.Position, NotPossibleMinDist);
     }
 
     public static bool TryGetCamoHidValue(Pawn seer, Pawn target, out bool hid)
@@ -624,7 +625,8 @@ public class CamoUtility
 
     internal static float GetFlashDistFactor(Pawn pawn, Pawn seer)
     {
-        return Mathf.Lerp(0.5f, 1f, Math.Min(maxCamoDist, pawn.Position.DistanceTo(seer.Position)) / maxCamoDist);
+        return Mathf.Lerp(0.5f, 1f,
+            Math.Min(maxCamoDist, pawn.Position.DistanceTo(seer.Position)) / maxCamoDist);
     }
 
     internal static void DoCamoMote(Thing thing, Thing ghost, bool hidden, int chance, float camoEff, float scaler)
