@@ -8,7 +8,7 @@ namespace CompCamo;
 [StaticConstructorOnStartup]
 internal static class MultiplayerSupport
 {
-    private static readonly Harmony harmony = new Harmony("rimworld.pelador.compcamo.multiplayersupport");
+    private static readonly Harmony harmony = new("rimworld.pelador.compcamo.multiplayersupport");
 
     static MultiplayerSupport()
     {

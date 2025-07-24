@@ -21,7 +21,7 @@ public class CamoAIUtility
 
         if (!seer.AnimalOrWildMan() || seer.RaceProps.FleshType != FleshTypeDefOf.Insectoid)
         {
-            CorrectLordForCamoAction(seer, target, seer.Map.IsPlayerHome);
+            correctLordForCamoAction(seer, target, seer.Map.IsPlayerHome);
             return;
         }
 
@@ -32,27 +32,27 @@ public class CamoAIUtility
         }
     }
 
-    public static void CorrectLordForCamoAction(Pawn seer, Pawn target, bool playerMap)
+    private static void correctLordForCamoAction(Pawn seer, Pawn target, bool playerMap)
     {
-        if (seer?.mindState.duty != null && !HasFleeingDuty(seer))
+        if (seer?.mindState.duty != null && !hasFleeingDuty(seer))
         {
             if (!playerMap)
             {
                 seer.mindState.duty = new PawnDuty(DutyDefOf.DefendBase, GetNearestBaseItem(seer));
             }
 
-            if (!IsMeleeProcess(seer, target))
+            if (!isMeleeProcess(seer))
             {
                 CorrectJob(seer, target);
             }
         }
-        else if (!IsMeleeProcess(seer, target))
+        else if (!isMeleeProcess(seer))
         {
             CorrectJob(seer, target);
         }
     }
 
-    public static bool IsMeleeProcess(Pawn seer, Pawn target)
+    private static bool isMeleeProcess(Pawn seer)
     {
         if (seer.CurrentEffectiveVerb.IsMeleeAttack)
         {
@@ -69,7 +69,7 @@ public class CamoAIUtility
         return mindState2?.meleeThreat != null;
     }
 
-    public static void StopCurJobAndWait(Pawn pawn)
+    private static void stopCurJobAndWait(Pawn pawn)
     {
         ClearAllJobs(pawn);
         GiveWaitJob(pawn, 117);
@@ -150,7 +150,7 @@ public class CamoAIUtility
         return position;
     }
 
-    private static bool HasFleeingDuty(Pawn pawn)
+    private static bool hasFleeingDuty(Pawn pawn)
     {
         return pawn.mindState.duty.def == DutyDefOf.ExitMapRandom || pawn.mindState.duty.def == DutyDefOf.Steal ||
                pawn.mindState.duty.def == DutyDefOf.Kidnap;
@@ -171,7 +171,7 @@ public class CamoAIUtility
             return;
         }
 
-        if (CanSeeSimply(seer, target))
+        if (canSeeSimply(seer, target))
         {
             if (CamoUtility.IsTargetHidden(target, seer))
             {
@@ -184,7 +184,7 @@ public class CamoAIUtility
         }
     }
 
-    public static void RemoveTarget(Pawn seer, Pawn target)
+    private static void removeTarget(Pawn seer, Pawn target)
     {
         if (seer.pather.Moving)
         {
@@ -214,7 +214,7 @@ public class CamoAIUtility
 
         if (mindState2?.meleeThreat == null)
         {
-            StopCurJobAndWait(seer);
+            stopCurJobAndWait(seer);
         }
     }
 
@@ -243,34 +243,12 @@ public class CamoAIUtility
         }
 
         seer.TryGetComp<PawnCamoData>().LastCamoCorrectTick = Find.TickManager.TicksGame;
-        RemoveTarget(seer, target);
+        removeTarget(seer, target);
     }
 
-    public static bool CanSeeSimply(Thing seer, Thing target)
+    private static bool canSeeSimply(Thing seer, Thing target)
     {
         return GenSight.LineOfSight(seer.Position, target.Position, seer.Map, true);
-    }
-
-    public static bool StillMeleeThreat(Pawn seer, Pawn target)
-    {
-        var result = false;
-        if (seer == null || target == null || seer.Map == null || target.Map == null || seer.Map != target.Map)
-        {
-            return false;
-        }
-
-        var mindState = seer.mindState;
-        var pawn = mindState?.meleeThreat;
-
-        if (pawn != null && pawn == target && pawn.Spawned && !pawn.Downed && seer.Spawned &&
-            Find.TickManager.TicksGame <= seer.mindState.lastMeleeThreatHarmTick + 83 &&
-            (seer.Position - pawn.Position).LengthHorizontalSquared <= 7f &&
-            GenSight.LineOfSight(seer.Position, pawn.Position, seer.Map))
-        {
-            result = true;
-        }
-
-        return result;
     }
 
     public static bool JobIsCastException(JobDef def)

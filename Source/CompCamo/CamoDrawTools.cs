@@ -18,49 +18,48 @@ public static class CamoDrawTools
             }
             else if (activeCamoEff > 0f)
             {
-                text = GetMoteToUse(activeCamoEff);
+                text = getMoteToUse(activeCamoEff);
                 b = true;
             }
         }
 
         if (!b && CamoGearUtility.GetCurCamoEff(pawn, out _, out var num) && num > 0f)
         {
-            text = GetMoteToUse(num);
+            text = getMoteToUse(num);
             b = true;
         }
 
         if (b && text != "")
         {
-            DoCamoOverlay(pawn, text);
+            doCamoOverlay(pawn, text);
         }
     }
 
-    public static string GetMoteToUse(float CamoEff)
+    private static string getMoteToUse(float camoEff)
     {
         var result = "";
-        if (CamoEff < 0.25f)
+        switch (camoEff)
         {
-            result = "Mote_CASPoor";
-        }
-        else if (CamoEff < 0.5f)
-        {
-            result = "Mote_CASAverage";
-        }
-        else if (CamoEff < 0.8f)
-        {
-            result = "Mote_CASGood";
-        }
-        else if (CamoEff >= 0.8f)
-        {
-            result = "Mote_CASExcellent";
+            case < 0.25f:
+                result = "Mote_CASPoor";
+                break;
+            case < 0.5f:
+                result = "Mote_CASAverage";
+                break;
+            case < 0.8f:
+                result = "Mote_CASGood";
+                break;
+            case >= 0.8f:
+                result = "Mote_CASExcellent";
+                break;
         }
 
         return result;
     }
 
-    public static void DoCamoOverlay(Pawn pawn, string CamoMote)
+    private static void doCamoOverlay(Pawn pawn, string camoMote)
     {
-        var mote = (Mote)ThingMaker.MakeThing(ThingDef.Named(CamoMote));
+        var mote = (Mote)ThingMaker.MakeThing(ThingDef.Named(camoMote));
         mote.Attach(pawn);
         if (pawn.Position.InBounds(pawn.Map))
         {

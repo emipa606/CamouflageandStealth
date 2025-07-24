@@ -20,7 +20,7 @@ public class ApparelUtility_CanWearTogether
             return;
         }
 
-        if (!CamoGearUtility.GetIsACApparel(A) || !CamoGearUtility.GetIsACApparel(B))
+        if (!CamoGearUtility.GetIsAcApparel(A) || !CamoGearUtility.GetIsAcApparel(B))
         {
             return;
         }

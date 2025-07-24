@@ -7,15 +7,15 @@ namespace CompCamo;
 
 public class CamoPresetColour
 {
-    public static Color Orange => new Color(0.870588243f, 0.509803951f, 0f, 1f);
+    private static Color Orange => new(0.870588243f, 0.509803951f, 0f, 1f);
 
-    public static Color Purple => new Color(0.5019608f, 0f, 0.3372549f, 1f);
+    private static Color Purple => new(0.5019608f, 0f, 0.3372549f, 1f);
 
-    public static Color Violet => new Color(1f, 0.41568628f, 0.7607843f, 1f);
+    private static Color Violet => new(1f, 0.41568628f, 0.7607843f, 1f);
 
-    public static Color Brown => new Color(0.392156869f, 0.1254902f, 0.0784313753f, 1f);
+    private static Color Brown => new(0.392156869f, 0.1254902f, 0.0784313753f, 1f);
 
-    public static List<Color> colourChoices()
+    private static List<Color> colourChoices()
     {
         return
         [
@@ -44,7 +44,7 @@ public class CamoPresetColour
             var num = 9f;
             foreach (var color2 in list)
             {
-                var num2 = ColourCompare(drawColor, color2);
+                var num2 = colourCompare(drawColor, color2);
                 if (!(num2 < num))
                 {
                     continue;
@@ -103,7 +103,7 @@ public class CamoPresetColour
         return result;
     }
 
-    public static float ColourCompare(Color color, Color compare)
+    private static float colourCompare(Color color, Color compare)
     {
         return 0f + Math.Abs(color.r - compare.r) + Math.Abs(color.g - compare.g) + Math.Abs(color.b - compare.b);
     }

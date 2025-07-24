@@ -17,7 +17,7 @@ public class Verb_CanHitTargetFrom
         var thing = targ.Thing;
         var caster = __instance.caster;
         if (thing is Pawn pawn && caster is Pawn pawn1 &&
-            (pawn1.IsColonist && Controller.Settings.AllowNPCCamo || !pawn1.IsColonist) &&
+            (pawn1.IsColonist && Controller.Settings.AllowNpcCamo || !pawn1.IsColonist) &&
             CamoUtility.IsTargetHidden(pawn, pawn1))
         {
             __result = false;

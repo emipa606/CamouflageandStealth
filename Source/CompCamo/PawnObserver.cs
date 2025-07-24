@@ -31,22 +31,22 @@ public class PawnObserver : ThingComp
         base.CompTick();
         if (Pawn.HashOffsetTicks() == 180)
         {
-            CalcAndSetObserver(Pawn);
+            calcAndSetObserver(Pawn);
         }
     }
 
     public override void PostSpawnSetup(bool respawningAfterLoad)
     {
         base.PostSpawnSetup(respawningAfterLoad);
-        CalcAndSetObserver(Pawn);
+        calcAndSetObserver(Pawn);
     }
 
-    public void CalcAndSetObserver(Pawn pawn)
+    private static void calcAndSetObserver(Pawn pawn)
     {
         var num = 0f;
         var num2 = 0f;
         var num3 = 0f;
-        var num4 = 0.25f;
+        const float num4 = 0.25f;
         if (pawn is not null)
         {
             if (pawn.apparel is { WornApparelCount: > 0 })

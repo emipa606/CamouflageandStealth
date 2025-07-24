@@ -1,0 +1,30 @@
+ManifestFileVersion: 0
+CRC: 3641686255
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: d7bf622d8b0deec935d50cbad6960b33
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 2612ac43db082a73502ee80f2eceb73f
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: d7bf622d8b0deec935d50cbad6960b33
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Data/Mlie.CamouflageandStealth/Textures/Things/Special/StealthBox/SSBox_south.png
+- Assets/Data/Mlie.CamouflageandStealth/Textures/Things/Special/ActiveCamoIcon.png
+- Assets/Data/Mlie.CamouflageandStealth/Textures/Things/Item/CardBoardBox/SSBox.png
+- Assets/Data/Mlie.CamouflageandStealth/Textures/Things/Special/StealthBox/SSBox_east.png
+- Assets/Data/Mlie.CamouflageandStealth/Textures/Things/Special/CamoOverlay/CamoStealth.png
+- Assets/Data/Mlie.CamouflageandStealth/Textures/Things/Special/CamoOverlay/CamoExcellent.png
+- Assets/Data/Mlie.CamouflageandStealth/Textures/Things/Special/CamoOverlay/CamoAverage.png
+- Assets/Data/Mlie.CamouflageandStealth/Textures/Things/Special/CamoOverlay/CamoPoor.png
+- Assets/Data/Mlie.CamouflageandStealth/Textures/Things/Special/StealthBox/SSBox_west.png
+- Assets/Data/Mlie.CamouflageandStealth/Textures/Things/Special/StealthBox/SSBox_north.png
+- Assets/Data/Mlie.CamouflageandStealth/Textures/Things/Special/CamoOverlay/CamoGood.png
+Dependencies: []

@@ -11,21 +11,21 @@ public class ActiveCamoApparel : Apparel
 {
     [NoTranslate] private readonly string ActiveCamoIconPath = "Things/Special/ActiveCamoIcon";
 
-    public readonly float ApparelScorePerEnergyMax = 0.25f;
+    private readonly float ApparelScorePerEnergyMax = 0.25f;
 
-    public readonly float EnergyOnReset = 0.2f;
+    private readonly float EnergyOnReset = 0.2f;
 
     private readonly SoundDef EnergyShield_Broken = SoundDef.Named("EnergyShield_Broken");
 
-    public readonly int StartingTicksToReset = 2500;
+    private readonly int StartingTicksToReset = 2500;
 
-    public bool ActiveCamo;
+    private bool ActiveCamo;
 
-    public int CamoState;
+    private int CamoState;
 
     public float energy;
 
-    public int ticksToReset = -1;
+    private int ticksToReset = -1;
 
     public float Energy => energy;
 
@@ -56,17 +56,17 @@ public class ActiveCamoApparel : Apparel
                 defaultLabel = "CompCamo.ActiveCamoLabel".Translate(),
                 defaultDesc = "CompCamo.ActiveCamoDesc".Translate(),
                 isActive = () => ActiveCamo && CamoState == 1,
-                toggleAction = delegate { ToggleActiveCamo(ActiveCamo); }
+                toggleAction = delegate { toggleActiveCamo(ActiveCamo); }
             };
         }
 
         yield return new Gizmo_EnergyActiveCamoStatus
         {
-            camo = this
+            Camo = this
         };
     }
 
-    public override void Tick()
+    protected override void Tick()
     {
         base.Tick();
         if (Wearer == null)
@@ -77,21 +77,24 @@ public class ActiveCamoApparel : Apparel
             return;
         }
 
-        if (CamoState == 2)
+        switch (CamoState)
         {
-            ticksToReset--;
-            if (ticksToReset <= 0)
+            case 2:
             {
-                Reset();
+                ticksToReset--;
+                if (ticksToReset <= 0)
+                {
+                    reset();
+                }
+
+                break;
             }
-        }
-        else if (CamoState == 1)
-        {
-            energy -= this.TryGetComp<CompGearCamo>().Props.CamoEnergyGainPerTick / 700f;
-        }
-        else if (CamoState == 0)
-        {
-            energy += this.TryGetComp<CompGearCamo>().Props.CamoEnergyGainPerTick / 200f;
+            case 1:
+                energy -= this.TryGetComp<CompGearCamo>().Props.CamoEnergyGainPerTick / 700f;
+                break;
+            case 0:
+                energy += this.TryGetComp<CompGearCamo>().Props.CamoEnergyGainPerTick / 200f;
+                break;
         }
 
         if (energy > this.TryGetComp<CompGearCamo>().Props.CamoEnergyMax)
@@ -102,12 +105,12 @@ public class ActiveCamoApparel : Apparel
 
         if (energy <= 0f && CamoState != 2)
         {
-            Break();
+            breakCamo();
         }
     }
 
 
-    public void ToggleActiveCamo(bool flag)
+    private void toggleActiveCamo(bool flag)
     {
         if (CamoState == 2)
         {
@@ -139,7 +142,7 @@ public class ActiveCamoApparel : Apparel
         if (dinfo.Def == DamageDefOf.EMP)
         {
             energy = 0f;
-            Break();
+            breakCamo();
             return false;
         }
 
@@ -150,11 +153,11 @@ public class ActiveCamoApparel : Apparel
         }
 
         energy = 0f;
-        Break();
+        breakCamo();
         return false;
     }
 
-    public void Break()
+    private void breakCamo()
     {
         var wearer = Wearer;
         if (wearer?.Map != null)
@@ -175,7 +178,7 @@ public class ActiveCamoApparel : Apparel
         CamoState = 2;
     }
 
-    public void Reset()
+    private void reset()
     {
         var wearer = Wearer;
         if (wearer.Spawned)

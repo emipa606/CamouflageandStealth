@@ -5,11 +5,11 @@ namespace CompCamo;
 
 public class Settings : ModSettings
 {
-    public bool AllowNPCCamo = true;
+    public bool AllowNpcCamo = true;
 
-    public float bestChance = 85f;
+    public float BestChance = 85f;
 
-    public bool devTesting;
+    public bool DevTesting;
 
     public bool DoCheckFlash = true;
 
@@ -19,15 +19,15 @@ public class Settings : ModSettings
 
     public bool DoCheckWeather = true;
 
-    public bool forceActive;
+    public bool ForceActive;
 
-    public bool forcePassive;
+    public bool ForcePassive;
 
-    public bool forceStealth;
+    public bool ForceStealth;
 
     public float RelPct = 100f;
 
-    public bool ShowMoteMsgs;
+    public bool ShowMoteMessages;
 
     public bool ShowOverlay;
 
@@ -37,82 +37,82 @@ public class Settings : ModSettings
 
     public void DoWindowContents(Rect canvas)
     {
-        var num = 8f;
-        var listing_Standard = new Listing_Standard
+        const float num = 8f;
+        var listingStandard = new Listing_Standard
         {
             ColumnWidth = canvas.width
         };
-        listing_Standard.Begin(canvas);
-        listing_Standard.Gap(num);
-        listing_Standard.CheckboxLabeled("CompCamo.ShowOverlay".Translate(), ref ShowOverlay);
-        listing_Standard.Gap(num);
+        listingStandard.Begin(canvas);
+        listingStandard.Gap(num);
+        listingStandard.CheckboxLabeled("CompCamo.ShowOverlay".Translate(), ref ShowOverlay);
+        listingStandard.Gap(num);
         checked
         {
-            listing_Standard.Label("CompCamo.RelativeCamo".Translate() + "  " + (int)RelPct);
-            RelPct = (int)listing_Standard.Slider((int)RelPct, 50f, 200f);
-            listing_Standard.Gap(num);
-            listing_Standard.CheckboxLabeled("CompCamo.DoCheckFlash".Translate(), ref DoCheckFlash);
-            listing_Standard.Gap(num);
-            listing_Standard.CheckboxLabeled("CompCamo.DoCheckWeather".Translate(), ref DoCheckWeather);
-            listing_Standard.Gap(num);
-            listing_Standard.CheckboxLabeled("CompCamo.DoCheckLight".Translate(), ref DoCheckLight);
-            listing_Standard.Gap(num);
-            listing_Standard.CheckboxLabeled("CompCamo.DoCheckTemp".Translate(), ref DoCheckTemp);
-            listing_Standard.Gap(num);
+            listingStandard.Label("CompCamo.RelativeCamo".Translate() + "  " + (int)RelPct);
+            RelPct = (int)listingStandard.Slider((int)RelPct, 50f, 200f);
+            listingStandard.Gap(num);
+            listingStandard.CheckboxLabeled("CompCamo.DoCheckFlash".Translate(), ref DoCheckFlash);
+            listingStandard.Gap(num);
+            listingStandard.CheckboxLabeled("CompCamo.DoCheckWeather".Translate(), ref DoCheckWeather);
+            listingStandard.Gap(num);
+            listingStandard.CheckboxLabeled("CompCamo.DoCheckLight".Translate(), ref DoCheckLight);
+            listingStandard.Gap(num);
+            listingStandard.CheckboxLabeled("CompCamo.DoCheckTemp".Translate(), ref DoCheckTemp);
+            listingStandard.Gap(num);
             if (Prefs.DevMode)
             {
-                listing_Standard.Gap(24f);
-                listing_Standard.Label("CompCamo.DebugTip".Translate());
+                listingStandard.Gap(24f);
+                listingStandard.Label("CompCamo.DebugTip".Translate());
                 Text.Font = GameFont.Small;
-                listing_Standard.Gap(num);
-                listing_Standard.CheckboxLabeled("CompCamo.UseDebug".Translate(), ref useDebug);
-                listing_Standard.Gap(num);
+                listingStandard.Gap(num);
+                listingStandard.CheckboxLabeled("CompCamo.UseDebug".Translate(), ref useDebug);
+                listingStandard.Gap(num);
                 if (useDebug)
                 {
-                    listing_Standard.CheckboxLabeled("CompCamo.ShowMoteMsgs".Translate(), ref ShowMoteMsgs);
-                    listing_Standard.Gap(num);
-                    listing_Standard.CheckboxLabeled("CompCamo.ShowTerrainLogs".Translate(), ref ShowTerrainLogs);
-                    listing_Standard.Gap(num);
-                    listing_Standard.CheckboxLabeled("CompCamo.AllowNPCCamo".Translate(), ref AllowNPCCamo);
-                    if (devTesting)
+                    listingStandard.CheckboxLabeled("CompCamo.ShowMoteMsgs".Translate(), ref ShowMoteMessages);
+                    listingStandard.Gap(num);
+                    listingStandard.CheckboxLabeled("CompCamo.ShowTerrainLogs".Translate(), ref ShowTerrainLogs);
+                    listingStandard.Gap(num);
+                    listingStandard.CheckboxLabeled("CompCamo.AllowNPCCamo".Translate(), ref AllowNpcCamo);
+                    if (DevTesting)
                     {
-                        listing_Standard.Gap(24f);
-                        listing_Standard.CheckboxLabeled("CompCamo.forceActive".Translate(), ref forceActive);
-                        listing_Standard.Gap(num);
-                        if (forceActive)
+                        listingStandard.Gap(24f);
+                        listingStandard.CheckboxLabeled("CompCamo.forceActive".Translate(), ref ForceActive);
+                        listingStandard.Gap(num);
+                        if (ForceActive)
                         {
-                            forcePassive = false;
-                            listing_Standard.CheckboxLabeled("CompCamo.forceStealth".Translate(), ref forceStealth);
-                            listing_Standard.Gap(num);
+                            ForcePassive = false;
+                            listingStandard.CheckboxLabeled("CompCamo.forceStealth".Translate(), ref ForceStealth);
+                            listingStandard.Gap(num);
                         }
                         else
                         {
-                            forceStealth = false;
-                            listing_Standard.CheckboxLabeled("CompCamo.forcePassive".Translate(), ref forcePassive);
-                            listing_Standard.Gap(num);
-                            if (forcePassive)
+                            ForceStealth = false;
+                            listingStandard.CheckboxLabeled("CompCamo.forcePassive".Translate(), ref ForcePassive);
+                            listingStandard.Gap(num);
+                            if (ForcePassive)
                             {
-                                forceActive = false;
-                                forceStealth = false;
+                                ForceActive = false;
+                                ForceStealth = false;
                             }
                         }
 
-                        listing_Standard.Label("CompCamo.bestChance".Translate() + "  " + (int)bestChance);
-                        bestChance = (int)listing_Standard.Slider((int)bestChance, 75f, 95f);
-                        listing_Standard.Gap(num);
+                        listingStandard.Label("CompCamo.bestChance".Translate() + "  " + (int)BestChance);
+                        BestChance = (int)listingStandard.Slider((int)BestChance, 75f, 95f);
+                        listingStandard.Gap(num);
                     }
                 }
             }
 
-            if (Controller.currentVersion != null)
+            if (Controller.CurrentVersion != null)
             {
-                listing_Standard.Gap();
+                listingStandard.Gap();
                 GUI.contentColor = Color.gray;
-                listing_Standard.Label("CompCamo.ModVersion".Translate(Controller.currentVersion));
+                listingStandard.Label("CompCamo.ModVersion".Translate(Controller.CurrentVersion));
                 GUI.contentColor = Color.white;
             }
 
-            listing_Standard.End();
+            listingStandard.End();
         }
     }
 
@@ -126,12 +126,12 @@ public class Settings : ModSettings
         Scribe_Values.Look(ref DoCheckLight, "DoCheckLight", true);
         Scribe_Values.Look(ref DoCheckTemp, "DoCheckTemp", true);
         Scribe_Values.Look(ref useDebug, "useDebug");
-        Scribe_Values.Look(ref ShowMoteMsgs, "ShowMoteMsgs");
+        Scribe_Values.Look(ref ShowMoteMessages, "ShowMoteMsgs");
         Scribe_Values.Look(ref ShowTerrainLogs, "ShowTerrainLogs");
-        Scribe_Values.Look(ref AllowNPCCamo, "AllowNPCCamo", true);
-        Scribe_Values.Look(ref forceActive, "forceActive");
-        Scribe_Values.Look(ref forceStealth, "forceStealth");
-        Scribe_Values.Look(ref forcePassive, "forcePassive");
-        Scribe_Values.Look(ref bestChance, "bestChance", 85f);
+        Scribe_Values.Look(ref AllowNpcCamo, "AllowNPCCamo", true);
+        Scribe_Values.Look(ref ForceActive, "forceActive");
+        Scribe_Values.Look(ref ForceStealth, "forceStealth");
+        Scribe_Values.Look(ref ForcePassive, "forcePassive");
+        Scribe_Values.Look(ref BestChance, "bestChance", 85f);
     }
 }

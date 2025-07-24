@@ -93,7 +93,7 @@ public class CamoGearUtility
     internal static bool GetCurCamoEff(Pawn pawn, out string type, out float CamoEff)
     {
         CamoEff = 0f;
-        type = GetCamoType(pawn);
+        type = getCamoType(pawn);
         var pawnCamoData = pawn.TryGetComp<PawnCamoData>();
         if (pawnCamoData == null)
         {
@@ -101,47 +101,37 @@ public class CamoGearUtility
         }
 
         var a = type;
-        if (a != "Arctic")
+        switch (a)
         {
-            if (a != "Desert")
-            {
-                if (a != "Jungle")
-                {
-                    if (a != "Stone")
-                    {
-                        if (a != "Woodland")
-                        {
-                            CamoEff = a != "Urban" ? pawnCamoData.PawnnotDefinedCamo : pawnCamoData.PawnUrbanCamo;
-                        }
-                        else
-                        {
-                            CamoEff = pawnCamoData.PawnWoodlandCamo;
-                        }
-                    }
-                    else
-                    {
-                        CamoEff = pawnCamoData.PawnStoneCamo;
-                    }
-                }
-                else
-                {
-                    CamoEff = pawnCamoData.PawnJungleCamo;
-                }
-            }
-            else
-            {
+            case "Arctic":
+                CamoEff = pawnCamoData.PawnArcticCamo;
+                break;
+            case "Desert":
                 CamoEff = pawnCamoData.PawnDesertCamo;
+                break;
+            case "Jungle":
+                CamoEff = pawnCamoData.PawnJungleCamo;
+                break;
+            case "Stone":
+                CamoEff = pawnCamoData.PawnStoneCamo;
+                break;
+            case "Woodland":
+                CamoEff = pawnCamoData.PawnWoodlandCamo;
+                break;
+            case "Urban":
+                CamoEff = pawnCamoData.PawnUrbanCamo;
+                break;
+            default:
+            {
+                CamoEff = pawnCamoData.PawnnotDefinedCamo;
+                break;
             }
-        }
-        else
-        {
-            CamoEff = pawnCamoData.PawnArcticCamo;
         }
 
         return CamoEff > 0f;
     }
 
-    internal static uint ComputeStringHash(string s)
+    private static uint ComputeStringHash(string s)
     {
         uint num = 0;
         if (s == null)
@@ -158,7 +148,7 @@ public class CamoGearUtility
         return num;
     }
 
-    internal static void WearingCamoGear(Pawn pawn, out float ArcticCamoEff, out float DesertCamoEff,
+    private static void WearingCamoGear(Pawn pawn, out float ArcticCamoEff, out float DesertCamoEff,
         out float JungleCamoEff, out float StoneCamoEff, out float WoodlandCamoEff, out float UrbanCamoEff,
         out float notDefinedCamoEff)
     {
@@ -184,11 +174,11 @@ public class CamoGearUtility
                 var apparelnotDefinedEff = 0f;
                 foreach (var text in CamoTypes())
                 {
-                    var num = Math.Min(1f, GetApparelCamoEff(pawn, apparel, text) * GetQualFactor(apparel));
+                    var num = Math.Min(1f, getApparelCamoEff(pawn, apparel, text) * getQualFactor(apparel));
                     var num2 = ComputeStringHash(text);
-                    if (num2 <= 1206763323U)
+                    switch (num2)
                     {
-                        if (num2 != 359505389U)
+                        case <= 1206763323U when num2 != 359505389U:
                         {
                             if (num2 != 437214172U)
                             {
@@ -206,15 +196,19 @@ public class CamoGearUtility
                             {
                                 apparelDesertEff = num;
                             }
+
+                            break;
                         }
-                        else if (text == "Arctic")
+                        case <= 1206763323U:
                         {
-                            apparelArcticEff = num;
+                            if (text == "Arctic")
+                            {
+                                apparelArcticEff = num;
+                            }
+
+                            break;
                         }
-                    }
-                    else if (num2 <= 1858049587U)
-                    {
-                        if (num2 != 1842662042U)
+                        case <= 1858049587U when num2 != 1842662042U:
                         {
                             if (num2 != 1858049587U)
                             {
@@ -225,27 +219,39 @@ public class CamoGearUtility
                             {
                                 apparelnotDefinedEff = num;
                             }
-                        }
-                        else if (text == "Stone")
-                        {
-                            apparelStoneEff = num;
-                        }
-                    }
-                    else if (num2 != 3655469229U)
-                    {
-                        if (num2 != 3729410372U)
-                        {
-                            continue;
-                        }
 
-                        if (text == "Jungle")
-                        {
-                            apparelJungleEff = num;
+                            break;
                         }
-                    }
-                    else if (text == "Woodland")
-                    {
-                        apparelWoodlandEff = num;
+                        case <= 1858049587U:
+                        {
+                            if (text == "Stone")
+                            {
+                                apparelStoneEff = num;
+                            }
+
+                            break;
+                        }
+                        default:
+                        {
+                            if (num2 != 3655469229U)
+                            {
+                                if (num2 != 3729410372U)
+                                {
+                                    continue;
+                                }
+
+                                if (text == "Jungle")
+                                {
+                                    apparelJungleEff = num;
+                                }
+                            }
+                            else if (text == "Woodland")
+                            {
+                                apparelWoodlandEff = num;
+                            }
+
+                            break;
+                        }
                     }
                 }
 
@@ -253,7 +259,7 @@ public class CamoGearUtility
                 var drawOrder = apparel.def.apparel.LastLayer.drawOrder;
                 foreach (var bodyPartGroupDef in bodyPartGroups)
                 {
-                    list.Add(GetNewRecord(bodyPartGroupDef, drawOrder, apparelArcticEff, apparelDesertEff,
+                    list.Add(getNewRecord(bodyPartGroupDef, drawOrder, apparelArcticEff, apparelDesertEff,
                         apparelJungleEff, apparelStoneEff, apparelWoodlandEff, apparelUrbanEff,
                         apparelnotDefinedEff));
                     list2.AddDistinct(bodyPartGroupDef.defName);
@@ -330,7 +336,7 @@ public class CamoGearUtility
         list2.Clear();
     }
 
-    internal static string GetNewRecord(BodyPartGroupDef BPGD, int priority, float apparelArcticEff,
+    private static string getNewRecord(BodyPartGroupDef BPGD, int priority, float apparelArcticEff,
         float apparelDesertEff, float apparelJungleEff, float apparelStoneEff, float apparelWoodlandEff,
         float apparelUrbanEff, float apparelnotDefinedEff)
     {
@@ -366,7 +372,7 @@ public class CamoGearUtility
         return 0;
     }
 
-    internal static float GetApparelCamoEff(Pawn pawn, Apparel apparel, string camoType)
+    private static float getApparelCamoEff(Pawn pawn, Apparel apparel, string camoType)
     {
         var num = 0f;
         if (pawn?.Map == null || camoType == null)
@@ -399,7 +405,7 @@ public class CamoGearUtility
         return num;
     }
 
-    internal static string GetCamoType(Pawn pawn)
+    private static string getCamoType(Pawn pawn)
     {
         var position = pawn.Position;
         var map = pawn.Map;
@@ -409,10 +415,7 @@ public class CamoGearUtility
             position = pawn.PositionHeld;
         }
 
-        if (map == null)
-        {
-            map = pawn.MapHeld;
-        }
+        map ??= pawn.MapHeld;
 
         if (map == null)
         {
@@ -439,7 +442,7 @@ public class CamoGearUtility
                 return "Stone";
             }
 
-            text = IsFluffyStuffed(terrain, out var text2) ? text2 : CamoDefGet.GetCamoDefTerrain(terrain);
+            text = isFluffyStuffed(terrain, out var text2) ? text2 : CamoDefGet.GetCamoDefTerrain(terrain);
 
             if (Prefs.DevMode && Controller.Settings.ShowTerrainLogs && Find.TickManager.TicksGame % 120 == 0)
             {
@@ -447,23 +450,22 @@ public class CamoGearUtility
             }
         }
 
-        if (text == "notDefined" && !position.UsesOutdoorTemperature(map))
+        switch (text)
         {
-            return "Urban";
-        }
-
-        if (text == "notDefined")
-        {
-            text = CamoDefGet.GetCamoDefBiome(map.Biome);
+            case "notDefined" when !position.UsesOutdoorTemperature(map):
+                return "Urban";
+            case "notDefined":
+                text = CamoDefGet.GetCamoDefBiome(map.Biome);
+                break;
         }
 
         return text;
     }
 
-    internal static bool IsFluffyStuffed(TerrainDef terrain, out string camoType)
+    private static bool isFluffyStuffed(TerrainDef terrain, out string camoType)
     {
         camoType = "notDefined";
-        if (!terrain.defName.Contains("_") || !GetFSValue(terrain.defName, out var text))
+        if (!terrain.defName.Contains("_") || !getFsValue(terrain.defName, out var text))
         {
             return false;
         }
@@ -489,7 +491,7 @@ public class CamoGearUtility
         return true;
     }
 
-    internal static bool GetFSValue(string str, out string FString)
+    private static bool getFsValue(string str, out string FString)
     {
         FString = "";
         if (str.LastIndexOf("_", StringComparison.Ordinal) >= str.Length)
@@ -497,18 +499,18 @@ public class CamoGearUtility
             return false;
         }
 
-        var text = str.Substring(str.LastIndexOf("_", StringComparison.Ordinal) + 1);
+        var text = str[(str.LastIndexOf("_", StringComparison.Ordinal) + 1)..];
         if (!text.StartsWith("Stuffed"))
         {
             return false;
         }
 
-        text = text.Substring(7);
+        text = text[7..];
         FString = text;
         return true;
     }
 
-    internal static float GetQualFactor(Apparel apparel)
+    private static float getQualFactor(Apparel apparel)
     {
         if (!apparel.TryGetQuality(out var qualityCategory))
         {
@@ -522,7 +524,7 @@ public class CamoGearUtility
             case QualityCategory.Poor:
                 return 0.98f;
             case QualityCategory.Normal:
-                return 1f;
+                break;
             case QualityCategory.Good:
                 return 1.02f;
             case QualityCategory.Excellent:
@@ -537,7 +539,7 @@ public class CamoGearUtility
     }
 
 
-    internal static bool GetIsACApparel(ThingDef def)
+    internal static bool GetIsAcApparel(ThingDef def)
     {
         return def?.thingClass.FullName == "CompCamo.ActiveCamoApparel";
     }

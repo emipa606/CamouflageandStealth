@@ -6,19 +6,19 @@ namespace StealthBox;
 
 public class CardboardBox : Apparel
 {
-    [NoTranslate] public static readonly string SSBox = "SSBox";
+    [NoTranslate] private static readonly string SSBox = "SSBox";
 
-    [NoTranslate] public static readonly string BoxGraphicRootPath = $"Things/Special/StealthBox/{SSBox}";
+    [NoTranslate] private static readonly string BoxGraphicRootPath = $"Things/Special/StealthBox/{SSBox}";
 
-    [NoTranslate] public readonly string BoxGraphicEastPath = $"{BoxGraphicRootPath}_east";
+    [NoTranslate] private readonly string BoxGraphicEastPath = $"{BoxGraphicRootPath}_east";
 
-    [NoTranslate] public readonly string BoxGraphicNorthPath = $"{BoxGraphicRootPath}_north";
+    [NoTranslate] private readonly string BoxGraphicNorthPath = $"{BoxGraphicRootPath}_north";
 
-    [NoTranslate] public readonly string BoxGraphicSouthPath = $"{BoxGraphicRootPath}_south";
+    [NoTranslate] private readonly string BoxGraphicSouthPath = $"{BoxGraphicRootPath}_south";
 
-    [NoTranslate] public readonly string BoxGraphicWestPath = $"{BoxGraphicRootPath}_west";
+    [NoTranslate] private readonly string BoxGraphicWestPath = $"{BoxGraphicRootPath}_west";
 
-    public float DmgBoxKill => HitPoints;
+    private float DmgBoxKill => HitPoints;
 
 
     public override void DrawWornExtras()
@@ -60,14 +60,14 @@ public class CardboardBox : Apparel
         Graphics.DrawMesh(MeshPool.plane10, matrix4x, material, 0);
     }
 
-    public override void Tick()
+    protected override void Tick()
     {
         base.Tick();
 
         var wearer = Wearer;
-        if (wearer?.Map != null && Wearer.Spawned && (Wearer.Downed || Wearer.Dead || JobIsLyingDown(Wearer)))
+        if (wearer?.Map != null && Wearer.Spawned && (Wearer.Downed || Wearer.Dead || jobIsLyingDown(Wearer)))
         {
-            DropBox(Wearer, this);
+            dropBox(Wearer, this);
         }
     }
 
@@ -95,7 +95,7 @@ public class CardboardBox : Apparel
         return true;
     }
 
-    public bool JobIsLyingDown(Pawn pawn)
+    private static bool jobIsLyingDown(Pawn pawn)
     {
         if (pawn?.CurJob == null)
         {
@@ -107,7 +107,7 @@ public class CardboardBox : Apparel
             or PawnPosture.LayingOnGroundFaceUp or PawnPosture.LayingInBed;
     }
 
-    public void DropBox(Pawn pawn, Apparel box)
+    private static void dropBox(Pawn pawn, Apparel box)
     {
         if (pawn == null || box == null || pawn.Map == null ||
             !pawn.apparel.TryDrop(box, out var apparel, pawn.Position))

@@ -6,7 +6,7 @@ namespace CompCamo;
 
 public class CamoPresets
 {
-    internal static List<string> GetCamoTags()
+    private static List<string> getCamoTags()
     {
         return
         [
@@ -31,7 +31,7 @@ public class CamoPresets
         ];
     }
 
-    internal static List<string> GetColourTags()
+    private static List<string> getColourTags()
     {
         return
         [
@@ -102,15 +102,15 @@ public class CamoPresets
 
             foreach (var text in list2)
             {
-                if (!text.StartsWith("PassiveCamo") || !GetCamoTags().Contains(text) &&
-                    !GetColourTags().Contains(text) &&
+                if (!text.StartsWith("PassiveCamo") || !getCamoTags().Contains(text) &&
+                    !getColourTags().Contains(text) &&
                     !text.StartsWith("PassiveCamo_Multi") &&
                     !text.StartsWith("PassiveCamo_Colour"))
                 {
                     continue;
                 }
 
-                var text2 = GetTagValue(text, 1);
+                var text2 = getTagValue(text, 1);
                 if (!CamoGearUtility.CamoTypes().Contains(text2) && text2 != "Multi")
                 {
                     if (text2 == "Colour")
@@ -610,7 +610,7 @@ public class CamoPresets
                         break;
                 }
 
-                var tagValue = GetTagValue(text, 2);
+                var tagValue = getTagValue(text, 2);
                 if (tagValue != null)
                 {
                     switch (tagValue)
@@ -639,14 +639,12 @@ public class CamoPresets
 
                 return num;
             }
-
-            return num;
         }
 
         return num;
     }
 
-    internal static string GetTagValue(string valuesStr, int position)
+    private static string getTagValue(string valuesStr, int position)
     {
         char[] separator =
         [

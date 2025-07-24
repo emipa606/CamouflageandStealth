@@ -2,6 +2,14 @@
   "Continued": true,
   "CanAdd": "2",
   "CanRemove": "2",
-  "PreviewVersion": "1.5",
-  "SocialImageSet": true
+  "PreviewVersion": "1.6",
+  "SocialImageSet": true,
+  "Patches": true,
+  "Defs": true,
+  "Assemblies": true,
+  "LinesOfCode": 123936,
+  "LinesOfXML": 32619,
+  "CodeBaseSize": 82,
+  "LastXmlCleaning": "2025-07-24T21:28:45.8800644+02:00",
+  "SearchTags": " passive camouflage"
 }

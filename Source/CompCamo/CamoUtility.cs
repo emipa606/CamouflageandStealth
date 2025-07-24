@@ -8,38 +8,38 @@ namespace CompCamo;
 
 public class CamoUtility
 {
-    public static readonly float minCamoDist = 1f;
+    private static readonly float minCamoDist = 1f;
 
-    public static readonly float maxCamoDist = 60f;
+    private static readonly float maxCamoDist = 60f;
 
-    public static readonly float ACminCamoDist = 5f;
+    private static readonly float ACminCamoDist = 5f;
 
-    public static readonly float ACmaxCamoDist = 60f;
+    private static readonly float ACmaxCamoDist = 60f;
 
-    public static readonly float NotPossibleMinDist = 2f;
+    private static readonly float NotPossibleMinDist = 2f;
 
-    public static readonly int TickElapse = 300;
+    private static readonly int TickElapse = 300;
 
-    public static bool IsCamoActive(Pawn target, out Apparel ACItem)
+    public static bool IsCamoActive(Pawn target, out Apparel acItem)
     {
-        ACItem = null;
+        acItem = null;
         if (!CamoGearUtility.IsWearingActiveCamo(target, out var apparel))
         {
             return false;
         }
 
-        if (apparel == null || !ActiveCamoIsActive(apparel))
+        if (apparel == null || !activeCamoIsActive(apparel))
         {
             return false;
         }
 
-        ACItem = apparel;
+        acItem = apparel;
         return true;
     }
 
-    internal static bool ActiveCamoIsActive(Apparel AC)
+    private static bool activeCamoIsActive(Apparel ac)
     {
-        return ((ActiveCamoApparel)AC).IsActiveCamo;
+        return ((ActiveCamoApparel)ac).IsActiveCamo;
     }
 
     public static bool IsTargetHidden(Pawn target, Pawn seer)
@@ -55,7 +55,7 @@ public class CamoUtility
             return false;
         }
 
-        if (TryGetCamoHidValue(seer, target, out var result))
+        if (tryGetCamoHidValue(seer, target, out var result))
         {
             return result;
         }
@@ -67,7 +67,7 @@ public class CamoUtility
 
         var isCamoActive = false;
         Apparel apparel = null;
-        if (!IsDebugMode() || !Controller.Settings.forcePassive)
+        if (!IsDebugMode() || !Controller.Settings.ForcePassive)
         {
             isCamoActive = IsCamoActive(target, out var apparel2);
             if (apparel2 != null)
@@ -76,13 +76,13 @@ public class CamoUtility
             }
         }
 
-        if ((!isCamoActive || seer.CurrentEffectiveVerb.IsMeleeAttack) && SimplyTooClose(seer, target))
+        if ((!isCamoActive || seer.CurrentEffectiveVerb.IsMeleeAttack) && simplyTooClose(seer, target))
         {
-            TryAddCamoHidValue(seer, target, false);
+            tryAddCamoHidValue(seer, target, false);
             return false;
         }
 
-        if (isCamoActive || IsDebugMode() && Controller.Settings.forceActive)
+        if (isCamoActive || IsDebugMode() && Controller.Settings.ForceActive)
         {
             if (!seer.Spawned)
             {
@@ -92,7 +92,7 @@ public class CamoUtility
             if (target.Map == null || seer.Map == null || target.Map != seer.Map ||
                 seer.InMentalState && target.InMentalState)
             {
-                TryAddCamoHidValue(seer, target, false);
+                tryAddCamoHidValue(seer, target, false);
                 return false;
             }
 
@@ -104,10 +104,10 @@ public class CamoUtility
             var num = 0.75f;
             var num2 = 0;
             bool settingsForceStealth;
-            if (IsDebugMode() && Controller.Settings.forceActive)
+            if (IsDebugMode() && Controller.Settings.ForceActive)
             {
                 apparel = null;
-                settingsForceStealth = Controller.Settings.forceStealth;
+                settingsForceStealth = Controller.Settings.ForceStealth;
                 if (settingsForceStealth)
                 {
                     num2 = 5;
@@ -120,17 +120,17 @@ public class CamoUtility
                 settingsForceStealth = num2 > 0 && num > 0f;
             }
 
-            if (CamoEffectWorked(target, seer, apparel, num, true, settingsForceStealth, num2, out var chance,
+            if (camoEffectWorked(target, seer, apparel, num, true, settingsForceStealth, num2, out var chance,
                     out var scaler))
             {
                 DoCamoMote(seer, target, true, chance, num, scaler);
-                TryAddCamoHidValue(seer, target, true);
+                tryAddCamoHidValue(seer, target, true);
                 CamoAIUtility.CorrectLordForCamo(seer, target);
                 return true;
             }
 
             DoCamoMote(seer, target, false, chance, num, scaler);
-            TryAddCamoHidValue(seer, target, false);
+            tryAddCamoHidValue(seer, target, false);
             return false;
         }
 
@@ -141,13 +141,13 @@ public class CamoUtility
 
         if (!CamoGearUtility.GetCurCamoEff(target, out var str, out var camoEff))
         {
-            TryAddCamoHidValue(seer, target, false);
+            tryAddCamoHidValue(seer, target, false);
             return false;
         }
 
         if (IsDebugMode())
         {
-            if (Controller.Settings.forcePassive)
+            if (Controller.Settings.ForcePassive)
             {
                 camoEff = 0.75f;
             }
@@ -158,7 +158,7 @@ public class CamoUtility
         if (target.Map == null || seer.Map == null || target.Map != seer.Map ||
             seer.InMentalState && target.InMentalState)
         {
-            TryAddCamoHidValue(seer, target, false);
+            tryAddCamoHidValue(seer, target, false);
             return false;
         }
 
@@ -167,21 +167,21 @@ public class CamoUtility
             return true;
         }
 
-        if (CamoEffectWorked(target, seer, null, camoEff, false, false, 0, out var chance2,
+        if (camoEffectWorked(target, seer, null, camoEff, false, false, 0, out var chance2,
                 out var scaler2))
         {
             DoCamoMote(seer, target, true, chance2, camoEff, scaler2);
-            TryAddCamoHidValue(seer, target, true);
+            tryAddCamoHidValue(seer, target, true);
             CamoAIUtility.CorrectLordForCamo(seer, target);
             return true;
         }
 
         DoCamoMote(seer, target, false, chance2, camoEff, scaler2);
-        TryAddCamoHidValue(seer, target, false);
+        tryAddCamoHidValue(seer, target, false);
         return false;
     }
 
-    public static bool SimplyTooClose(Pawn seer, Pawn target)
+    private static bool simplyTooClose(Pawn seer, Pawn target)
     {
         if (seer == null || target == null || seer.Map == null || target.Map == null || seer.Map != target.Map ||
             !seer.Spawned || !target.Spawned)
@@ -193,7 +193,7 @@ public class CamoUtility
                seer.Position.InHorDistOf(target.Position, NotPossibleMinDist);
     }
 
-    public static bool TryGetCamoHidValue(Pawn seer, Pawn target, out bool hid)
+    private static bool tryGetCamoHidValue(Pawn seer, Pawn target, out bool hid)
     {
         hid = false;
 
@@ -237,7 +237,7 @@ public class CamoUtility
         return false;
     }
 
-    public static void TryAddCamoHidValue(Pawn seer, Pawn target, bool value)
+    private static void tryAddCamoHidValue(Pawn seer, Pawn target, bool value)
     {
         if (seer == null)
         {
@@ -290,14 +290,14 @@ public class CamoUtility
         pawnCamoData.PawnHidTickList = list;
     }
 
-    public static bool CamoEffectWorked(Pawn target, Thing seer, Apparel ACApparel, float CamoEff, bool isActive,
-        bool isStealth, int StealthCamoChance, out int chance, out float scaler)
+    private static bool camoEffectWorked(Pawn target, Thing seer, Apparel acApparel, float camoEff, bool isActive,
+        bool isStealth, int stealthCamoChance, out int chance, out float scaler)
     {
-        var bestChance = Controller.Settings.bestChance;
+        var bestChance = Controller.Settings.BestChance;
         var num = 0;
         var num2 = target.Position.DistanceTo(seer.Position);
-        var num3 = 0.1f;
-        var num4 = 0.2f;
+        const float num3 = 0.1f;
+        const float num4 = 0.2f;
         if (!isActive)
         {
             if (num2 >= minCamoDist)
@@ -328,7 +328,7 @@ public class CamoUtility
             scaler = 0f;
         }
 
-        var num5 = Math.Max(0f, Math.Min(1f, CamoEff));
+        var num5 = Math.Max(0f, Math.Min(1f, camoEff));
         if (num5 > 0f)
         {
             scaler *= num5;
@@ -360,16 +360,16 @@ public class CamoUtility
         }
 
         var num7 = 0;
-        if (isActive && ACApparel != null)
+        if (isActive && acApparel != null)
         {
-            num7 = GetQualOffset(ACApparel);
+            num7 = getQualOffset(acApparel);
         }
 
         if (isActive)
         {
             if (isStealth)
             {
-                chance = StealthCamoChance;
+                chance = stealthCamoChance;
                 num = (int)Mathf.Lerp(Math.Min(bestChance, bestChance - num7), Math.Max(1f, 1f - num7), scaler);
             }
             else
@@ -412,7 +412,7 @@ public class CamoUtility
         var num10 = chance;
         if (chance > 0)
         {
-            var miscFactor = GetMiscFactor(target, pawn, false);
+            var miscFactor = getMiscFactor(target, pawn, false);
             chance = Math.Min((int)bestChance, (int)(chance * level * miscFactor));
         }
 
@@ -425,7 +425,7 @@ public class CamoUtility
         return chance < 100 && (chance < 1 || Rnd100() + num6 > chance);
     }
 
-    internal static int GetQualOffset(Apparel apparel)
+    private static int getQualOffset(Apparel apparel)
     {
         if (!apparel.TryGetQuality(out var qualityCategory))
         {
@@ -439,7 +439,7 @@ public class CamoUtility
             case QualityCategory.Poor:
                 return -5;
             case QualityCategory.Normal:
-                return 0;
+                break;
             case QualityCategory.Good:
                 return 5;
             case QualityCategory.Excellent:
@@ -453,7 +453,7 @@ public class CamoUtility
         return 0;
     }
 
-    internal static float GetMiscFactor(Pawn target, Pawn seer, bool ActiveCamo)
+    private static float getMiscFactor(Pawn target, Pawn seer, bool ActiveCamo)
     {
         var num = 1f;
         if (StealthyBox.IsWearingStealthBox(target, out _))
@@ -476,35 +476,42 @@ public class CamoUtility
         {
             if (!target.Downed)
             {
-                if (target.stances.curStance is Stance_Mobile)
+                switch (target.stances.curStance)
                 {
-                    if (StealthyBox.IsWearingStealthBox(target, out _))
+                    case Stance_Mobile:
                     {
-                        num *= 1.5f;
-                    }
-                    else
-                    {
-                        num *= 1.1f;
-                    }
+                        if (StealthyBox.IsWearingStealthBox(target, out _))
+                        {
+                            num *= 1.5f;
+                        }
+                        else
+                        {
+                            num *= 1.1f;
+                        }
 
-                    if (IsInsectoid(seer))
-                    {
-                        num *= 1.25f;
+                        if (isInsectoid(seer))
+                        {
+                            num *= 1.25f;
+                        }
+
+                        break;
                     }
-                }
-                else if (target.stances.curStance is Stance_Cooldown or Stance_Warmup)
-                {
-                    num *= 0.95f;
-                    if (IsInsectoid(seer))
+                    case Stance_Cooldown or Stance_Warmup:
                     {
-                        num *= 0.75f;
+                        num *= 0.95f;
+                        if (isInsectoid(seer))
+                        {
+                            num *= 0.75f;
+                        }
+
+                        break;
                     }
                 }
             }
             else
             {
                 num *= 0.5f;
-                if (IsInsectoid(seer))
+                if (isInsectoid(seer))
                 {
                     num *= 0.75f;
                 }
@@ -546,18 +553,13 @@ public class CamoUtility
             }
         }
 
-        if (!Controller.Settings.DoCheckTemp)
-        {
-            return num;
-        }
-
-        if (target == null)
+        if (!Controller.Settings.DoCheckTemp || target == null)
         {
             return num;
         }
 
         var temperature = target.Position.GetTemperature(target.Map);
-        var num2 = 21f;
+        const float num2 = 21f;
         if (temperature > num2)
         {
             num *= Mathf.Lerp(1f, 0.85f, (temperature - num2) / temperature);
@@ -566,7 +568,7 @@ public class CamoUtility
         return num;
     }
 
-    internal static bool IsInsectoid(Pawn pawn)
+    private static bool isInsectoid(Pawn pawn)
     {
         return pawn != null && pawn.RaceProps.Animal && pawn.RaceProps.FleshType == FleshTypeDefOf.Insectoid;
     }
@@ -618,7 +620,7 @@ public class CamoUtility
         return 1f * num2 * num3;
     }
 
-    public static bool IsDebugMode()
+    private static bool IsDebugMode()
     {
         return Prefs.DevMode && Controller.Settings.useDebug && !IsGamePaused();
     }
@@ -629,21 +631,18 @@ public class CamoUtility
             Math.Min(maxCamoDist, pawn.Position.DistanceTo(seer.Position)) / maxCamoDist);
     }
 
-    internal static void DoCamoMote(Thing thing, Thing ghost, bool hidden, int chance, float camoEff, float scaler)
+    private static void DoCamoMote(Thing thing, Thing ghost, bool hidden, int chance, float camoEff, float scaler)
     {
         var hostileTo = false;
-        if (!IsDebugMode() || !Controller.Settings.ShowMoteMsgs || thing is { Map: null, Spawned: true })
+        if (!IsDebugMode() || !Controller.Settings.ShowMoteMessages || thing is { Map: null, Spawned: true })
         {
             return;
         }
 
-        if (true)
+        if (thing is Pawn)
         {
-            if (thing is Pawn)
-            {
-                hostileTo = ghost is Pawn && thing.HostileTo(ghost) && !(thing.Position == ghost.Position) &&
-                            !thing.Position.InHorDistOf(ghost.Position, NotPossibleMinDist);
-            }
+            hostileTo = ghost is Pawn && thing.HostileTo(ghost) && !(thing.Position == ghost.Position) &&
+                        !thing.Position.InHorDistOf(ghost.Position, NotPossibleMinDist);
         }
 
         if (!hostileTo || !IsValidThingForCamo(thing))
@@ -675,12 +674,8 @@ public class CamoUtility
         }
 
         var text2 = text;
-        bool isPawn;
-        if (thing is not Pawn pawn)
-        {
-            isPawn = false;
-        }
-        else
+        var isPawn = false;
+        if (thing is Pawn pawn)
         {
             var jobs = pawn.jobs;
             isPawn = jobs?.curJob != null;
@@ -691,12 +686,8 @@ public class CamoUtility
             text2 = $"{text2}, CJ: {((Pawn)thing).jobs.curJob.def.defName}";
             var str = text2;
             var str2 = ", ET:";
-            bool isOtherPawn;
-            if (thing is not Pawn pawn2)
-            {
-                isOtherPawn = false;
-            }
-            else
+            var isOtherPawn = false;
+            if (thing is Pawn pawn2)
             {
                 var mindState = pawn2.mindState;
                 isOtherPawn = mindState?.enemyTarget != null;
@@ -716,12 +707,8 @@ public class CamoUtility
             text2 = str + str2 + str3;
             var str4 = text2;
             var str5 = ", MT:";
-            bool isAnotherPawn;
-            if (thing is not Pawn pawn3)
-            {
-                isAnotherPawn = false;
-            }
-            else
+            var isAnotherPawn = false;
+            if (thing is Pawn pawn3)
             {
                 var mindState2 = pawn3.mindState;
                 isAnotherPawn = mindState2?.meleeThreat != null;
@@ -744,17 +731,17 @@ public class CamoUtility
         Log.Message(text2);
     }
 
-    internal static bool IsGamePaused()
+    private static bool IsGamePaused()
     {
         return Find.TickManager.Paused;
     }
 
-    internal static bool IsValidThingForCamo(Thing thing)
+    private static bool IsValidThingForCamo(Thing thing)
     {
         return thing?.Map != null && thing is Pawn { Spawned: true } pawn && !pawn.RaceProps.IsMechanoid;
     }
 
-    public static int Rnd100()
+    private static int Rnd100()
     {
         return Rand.Range(1, 100);
     }
