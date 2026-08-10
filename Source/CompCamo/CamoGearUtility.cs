@@ -159,189 +159,81 @@ public class CamoGearUtility
         WoodlandCamoEff = 0f;
         UrbanCamoEff = 0f;
         notDefinedCamoEff = 0f;
-        var list = new List<string>();
-        var list2 = new List<string>();
-        if (pawn?.apparel is { WornApparelCount: > 0 })
+        if (pawn?.apparel is not { WornApparelCount: > 0 } || pawn.health?.hediffSet == null)
         {
-            foreach (var apparel in pawn.apparel.WornApparel)
-            {
-                var apparelArcticEff = 0f;
-                var apparelDesertEff = 0f;
-                var apparelJungleEff = 0f;
-                var apparelStoneEff = 0f;
-                var apparelWoodlandEff = 0f;
-                var apparelUrbanEff = 0f;
-                var apparelnotDefinedEff = 0f;
-                foreach (var text in CamoTypes())
-                {
-                    var num = Math.Min(1f, getApparelCamoEff(pawn, apparel, text) * getQualFactor(apparel));
-                    var num2 = ComputeStringHash(text);
-                    switch (num2)
-                    {
-                        case <= 1206763323U when num2 != 359505389U:
-                        {
-                            if (num2 != 437214172U)
-                            {
-                                if (num2 != 1206763323U)
-                                {
-                                    continue;
-                                }
-
-                                if (text == "Urban")
-                                {
-                                    apparelUrbanEff = num;
-                                }
-                            }
-                            else if (text == "Desert")
-                            {
-                                apparelDesertEff = num;
-                            }
-
-                            break;
-                        }
-                        case <= 1206763323U:
-                        {
-                            if (text == "Arctic")
-                            {
-                                apparelArcticEff = num;
-                            }
-
-                            break;
-                        }
-                        case <= 1858049587U when num2 != 1842662042U:
-                        {
-                            if (num2 != 1858049587U)
-                            {
-                                continue;
-                            }
-
-                            if (text == "notDefined")
-                            {
-                                apparelnotDefinedEff = num;
-                            }
-
-                            break;
-                        }
-                        case <= 1858049587U:
-                        {
-                            if (text == "Stone")
-                            {
-                                apparelStoneEff = num;
-                            }
-
-                            break;
-                        }
-                        default:
-                        {
-                            if (num2 != 3655469229U)
-                            {
-                                if (num2 != 3729410372U)
-                                {
-                                    continue;
-                                }
-
-                                if (text == "Jungle")
-                                {
-                                    apparelJungleEff = num;
-                                }
-                            }
-                            else if (text == "Woodland")
-                            {
-                                apparelWoodlandEff = num;
-                            }
-
-                            break;
-                        }
-                    }
-                }
-
-                var bodyPartGroups = apparel.def.apparel.bodyPartGroups;
-                var drawOrder = apparel.def.apparel.LastLayer.drawOrder;
-                foreach (var bodyPartGroupDef in bodyPartGroups)
-                {
-                    list.Add(getNewRecord(bodyPartGroupDef, drawOrder, apparelArcticEff, apparelDesertEff,
-                        apparelJungleEff, apparelStoneEff, apparelWoodlandEff, apparelUrbanEff,
-                        apparelnotDefinedEff));
-                    list2.AddDistinct(bodyPartGroupDef.defName);
-                }
-            }
-
-            if (list.Count > 0 && list2.Count > 0)
-            {
-                var num3 = 0f;
-                var num4 = 0f;
-                var num5 = 0f;
-                var num6 = 0f;
-                var num7 = 0f;
-                var num8 = 0f;
-                var num9 = 0f;
-                var num10 = 0;
-                foreach (var b in list2)
-                {
-                    var num11 = 0;
-                    var num12 = 0f;
-                    var num13 = 0f;
-                    var num14 = 0f;
-                    var num15 = 0f;
-                    var num16 = 0f;
-                    var num17 = 0f;
-                    var num18 = 0f;
-                    foreach (var valuesStr in list)
-                    {
-                        if (GetStrValue(valuesStr, 0) != b)
-                        {
-                            continue;
-                        }
-
-                        var intValue = GetIntValue(valuesStr, 1);
-                        if (intValue < num11)
-                        {
-                            continue;
-                        }
-
-                        num11 = intValue;
-                        num12 = GetIntValue(valuesStr, 2) / 1000f;
-                        num13 = GetIntValue(valuesStr, 3) / 1000f;
-                        num14 = GetIntValue(valuesStr, 4) / 1000f;
-                        num15 = GetIntValue(valuesStr, 5) / 1000f;
-                        num16 = GetIntValue(valuesStr, 6) / 1000f;
-                        num17 = GetIntValue(valuesStr, 7) / 1000f;
-                        num18 = GetIntValue(valuesStr, 8) / 1000f;
-                    }
-
-                    num3 += num12;
-                    num4 += num13;
-                    num5 += num14;
-                    num6 += num15;
-                    num7 += num16;
-                    num8 += num17;
-                    num9 += num18;
-                    num10++;
-                }
-
-                if (num10 > 0)
-                {
-                    ArcticCamoEff = num3 / num10;
-                    DesertCamoEff = num4 / num10;
-                    JungleCamoEff = num5 / num10;
-                    StoneCamoEff = num6 / num10;
-                    WoodlandCamoEff = num7 / num10;
-                    UrbanCamoEff = num8 / num10;
-                    notDefinedCamoEff = num9 / num10;
-                }
-            }
+            return;
         }
 
-        list.Clear();
-        list2.Clear();
+        var totalCoverage = 0f;
+        foreach (var bodyPartRecord in pawn.health.hediffSet.GetNotMissingParts())
+        {
+            if (!bodyPartRecord.def.IsSkinCovered(bodyPartRecord, pawn.health.hediffSet) ||
+                bodyPartRecord.coverageAbs <= 0f)
+            {
+                continue;
+            }
+
+            totalCoverage += bodyPartRecord.coverageAbs;
+            var apparel = getTopApparelForPart(pawn, bodyPartRecord);
+            if (apparel == null)
+            {
+                continue;
+            }
+
+            var qualFactor = getQualFactor(apparel);
+            ArcticCamoEff += bodyPartRecord.coverageAbs * getApparelCamoEffForType(pawn, apparel, qualFactor, "Arctic");
+            DesertCamoEff += bodyPartRecord.coverageAbs * getApparelCamoEffForType(pawn, apparel, qualFactor, "Desert");
+            JungleCamoEff += bodyPartRecord.coverageAbs * getApparelCamoEffForType(pawn, apparel, qualFactor, "Jungle");
+            StoneCamoEff += bodyPartRecord.coverageAbs * getApparelCamoEffForType(pawn, apparel, qualFactor, "Stone");
+            WoodlandCamoEff += bodyPartRecord.coverageAbs *
+                               getApparelCamoEffForType(pawn, apparel, qualFactor, "Woodland");
+            UrbanCamoEff += bodyPartRecord.coverageAbs * getApparelCamoEffForType(pawn, apparel, qualFactor, "Urban");
+            notDefinedCamoEff += bodyPartRecord.coverageAbs *
+                                 getApparelCamoEffForType(pawn, apparel, qualFactor, "notDefined");
+        }
+
+        if (totalCoverage <= 0f)
+        {
+            return;
+        }
+
+        ArcticCamoEff /= totalCoverage;
+        DesertCamoEff /= totalCoverage;
+        JungleCamoEff /= totalCoverage;
+        StoneCamoEff /= totalCoverage;
+        WoodlandCamoEff /= totalCoverage;
+        UrbanCamoEff /= totalCoverage;
+        notDefinedCamoEff /= totalCoverage;
     }
 
-    private static string getNewRecord(BodyPartGroupDef BPGD, int priority, float apparelArcticEff,
-        float apparelDesertEff, float apparelJungleEff, float apparelStoneEff, float apparelWoodlandEff,
-        float apparelUrbanEff, float apparelnotDefinedEff)
+    private static Apparel getTopApparelForPart(Pawn pawn, BodyPartRecord bodyPartRecord)
     {
-        return
-            $"{BPGD.defName};{priority};{(int)(apparelArcticEff * 1000f)};{(int)(apparelDesertEff * 1000f)};{(int)(apparelJungleEff * 1000f)};{(int)(apparelStoneEff * 1000f)};{(int)(apparelWoodlandEff * 1000f)};{(int)(apparelUrbanEff * 1000f)};{(int)(apparelnotDefinedEff * 1000f)}";
+        Apparel result = null;
+        var num = int.MinValue;
+        foreach (var apparel in pawn.apparel.WornApparel)
+        {
+            var apparelProps = apparel.def.apparel;
+            if (apparelProps == null || !apparelProps.CoversBodyPart(bodyPartRecord))
+            {
+                continue;
+            }
+
+            var drawOrder = apparelProps.LastLayer.drawOrder;
+            if (drawOrder < num)
+            {
+                continue;
+            }
+
+            num = drawOrder;
+            result = apparel;
+        }
+
+        return result;
+    }
+
+    private static float getApparelCamoEffForType(Pawn pawn, Apparel apparel, float qualFactor, string camoType)
+    {
+        return Math.Min(1f, getApparelCamoEff(pawn, apparel, camoType) * qualFactor);
     }
 
     internal static string GetStrValue(string valuesStr, int position)

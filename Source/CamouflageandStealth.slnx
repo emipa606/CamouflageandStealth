@@ -6,4 +6,36 @@
     <BuildType Name="Release" />
   </Configurations>
   <Project Path="CompCamo/CompCamo.csproj" />
+  <Folder Name="/XML/Languages/English/Keyed/">
+    <File Path="../Languages/English/Keyed/CASLanguageData.xml" />
+  </Folder>
+  <Folder Name="/XML/Defs/">
+    <File Path="../Defs/Defs_Mote_CAS.xml" />
+    <File Path="../Defs/Defs_Research_CAS.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Patches/ModTerrain/">
+    <File Path="../1.6/Patches/ModTerrain/Patch_Advanced_Biomes.xml" />
+    <File Path="../1.6/Patches/ModTerrain/Patch_FencesAndFloors.xml" />
+    <File Path="../1.6/Patches/ModTerrain/Patch_Rimefeller.xml" />
+    <File Path="../1.6/Patches/ModTerrain/Patch_Rimoleum.xml" />
+    <File Path="../1.6/Patches/ModTerrain/Patch_SI_SIR.xml" />
+    <File Path="../1.6/Patches/ModTerrain/Patch_SimplyMoreFloors.xml" />
+    <File Path="../1.6/Patches/ModTerrain/Patch_T_More_Floors.xml" />
+    <File Path="../1.6/Patches/ModTerrain/Patch_Terrain_Industrialisation.xml" />
+    <File Path="../1.6/Patches/ModTerrain/Patch_Terrain_Vanilla.xml" />
+    <File Path="../1.6/Patches/ModTerrain/Patch_WD_Expanded_Floors.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Patches/">
+    <File Path="../1.6/Patches/Patch_MSG.xml" />
+    <File Path="../1.6/Patches/Patch_Vanilla_Armour.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Patches/ModBiomes/">
+    <File Path="../1.6/Patches/ModBiomes/Patch_Advanced_Biomes.xml" />
+    <File Path="../1.6/Patches/ModBiomes/Patch_Biomes_Vanilla.xml" />
+    <File Path="../1.6/Patches/ModBiomes/Patch_NaturesPrettySweet.xml" />
+    <File Path="../1.6/Patches/ModBiomes/Patch_RF_Realistic_Planets.xml" />
+  </Folder>
+  <Folder Name="/XML/About/">
+    <File Path="../About/about.xml" />
+  </Folder>
 </Solution>

@@ -18,7 +18,30 @@ public class CamoUtility
 
     private static readonly float NotPossibleMinDist = 2f;
 
-    private static readonly int TickElapse = 300;
+    private static readonly int HiddenTickElapse = 60;
+
+    private static readonly int VisibleTickElapse = 300;
+
+    private static int getCacheTickElapse(bool hidden)
+    {
+        return hidden ? HiddenTickElapse : VisibleTickElapse;
+    }
+
+    private static bool isExpiredCacheEntry(string valueStr, int ticksGame)
+    {
+        var hidden = CamoGearUtility.GetStrValue(valueStr, 2) == "1";
+        return CamoGearUtility.GetIntValue(valueStr, 1) + getCacheTickElapse(hidden) < ticksGame;
+    }
+
+    private static string getCacheEntry(Pawn target, int ticksGame, bool value)
+    {
+        return $"{target.thingIDNumber};{ticksGame};{(value ? "1" : "0")}";
+    }
+
+    private static bool isCacheEntryForTarget(string valueStr, Pawn target)
+    {
+        return target != null && CamoGearUtility.GetIntValue(valueStr, 0) == target.thingIDNumber;
+    }
 
     public static bool IsCamoActive(Pawn target, out Apparel acItem)
     {
@@ -205,32 +228,19 @@ public class CamoUtility
 
         var ticksGame = Find.TickManager.TicksGame;
         var list = pawnCamoData.PawnHidTickList;
-        if (list is not { Count: > 0 })
+        if (list is not { Count: > 0 } || target == null)
         {
             return false;
         }
 
         foreach (var valuesStr in list)
         {
-            if (CamoGearUtility.GetIntValue(valuesStr, 1) + TickElapse < ticksGame)
+            if (isExpiredCacheEntry(valuesStr, ticksGame) || !isCacheEntryForTarget(valuesStr, target))
             {
                 continue;
             }
 
-            var intValue = CamoGearUtility.GetIntValue(valuesStr, 0);
-            if (target == null)
-            {
-                continue;
-            }
-
-            _ = target.thingIDNumber;
-            if (intValue != target.thingIDNumber)
-            {
-                continue;
-            }
-
-            var strValue = CamoGearUtility.GetStrValue(valuesStr, 2);
-            hid = strValue == "1";
+            hid = CamoGearUtility.GetStrValue(valuesStr, 2) == "1";
             return true;
         }
 
@@ -239,13 +249,7 @@ public class CamoUtility
 
     private static void tryAddCamoHidValue(Pawn seer, Pawn target, bool value)
     {
-        if (seer == null)
-        {
-            return;
-        }
-
-        var b = false;
-        var pawnCamoData = seer.TryGetComp<PawnCamoData>();
+        var pawnCamoData = seer?.TryGetComp<PawnCamoData>();
         if (pawnCamoData == null)
         {
             return;
@@ -258,33 +262,18 @@ public class CamoUtility
         {
             foreach (var text in pawnHidTickList)
             {
-                if (CamoGearUtility.GetIntValue(text, 1) + TickElapse < ticksGame)
+                if (isExpiredCacheEntry(text, ticksGame) || isCacheEntryForTarget(text, target))
                 {
                     continue;
                 }
 
                 list.AddDistinct(text);
-                var intValue = CamoGearUtility.GetIntValue(text, 0);
-                if (target == null)
-                {
-                    continue;
-                }
-
-                _ = target.thingIDNumber;
-                if (intValue == target.thingIDNumber)
-                {
-                    b = true;
-                }
             }
         }
 
-        if (!b)
+        if (target != null)
         {
-            if (target != null)
-            {
-                var text2 = $"{target.thingIDNumber};{ticksGame};{(value ? "1" : "0")}";
-                list.AddDistinct(text2);
-            }
+            list.AddDistinct(getCacheEntry(target, ticksGame, value));
         }
 
         pawnCamoData.PawnHidTickList = list;
@@ -573,7 +562,7 @@ public class CamoUtility
         return pawn != null && pawn.RaceProps.Animal && pawn.RaceProps.FleshType == FleshTypeDefOf.Insectoid;
     }
 
-    internal static float GetGunFlashEff(Pawn pawn, Pawn seer)
+    private static float GetGunFlashEff(Pawn pawn, Pawn seer)
     {
         if (pawn?.Map == null || seer?.Map == null || pawn.Map != seer.Map)
         {

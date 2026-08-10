@@ -1,55 +1,94 @@
-# CoPilot Instructions for RimWorld Camo Mod
+# GitHub Copilot Instructions for RimWorld Modding: Camouflage and Stealth (Continued)
 
 ## Mod Overview and Purpose
 
-This mod introduces advanced camouflage mechanics to RimWorld, enhancing both the visual and tactical aspects of the game. Players can equip colonists with camouflage apparel that affects visibility to enemies, introduces new stealth-based strategies, and provides expanded gameplay opportunities.
+**Mod Name:** Camouflage and Stealth (Continued)
+
+**Purpose:** 
+The Camouflage and Stealth (CAS) framework allows other mod authors to enhance apparel and equipment with passive and active camouflage capabilities, and improve observation sight capabilities. This technology grants users the ability to blend into backgrounds via camouflage and enhances sight and stealth potential in the game, thereby enhancing the tactical experience in RimWorld.
 
 ## Key Features and Systems
 
-1. **Camouflage Apparel**: Includes new types of apparel with camouflage capabilities, integrating into the existing apparel system.
-2. **Active Camouflage Mechanism**: Allows players to toggle active camouflage on certain apparel, impacting visibility mechanics in-game.
-3. **AI and Observer Utilities**: Implements utilities to determine how AI perceives camouflaged entities, and adjusts their behavior accordingly.
-4. **Camouflage Presets**: Offers pre-configured camouflage patterns for ease of use and personalization.
-5. **Multiplayer Support**: Ensures the mod functions seamlessly in both single and multiplayer settings.
+1. **Passive Camouflage:** 
+   - Provides pattern-based or color-coded camouflage helpful in blending with surroundings.
+   - Apparel-based passive camouflage is weighted by the wearer’s natural skin-covered body-part coverage, so small items contribute proportionally less than large garments across different races and body layouts.
+
+2. **Active Camouflage:** 
+   - Utilizes advanced technologies to disguise wearers, focusing on stealth and tactical advantages.
+
+3. **Observation Enhancements:** 
+   - Improves sight capabilities through advanced optics, providing potential counters to camouflage.
+
+4. **Framework Utilization:** 
+   - Designed for other mod developers to integrate CAS into their mods through API and XML patches.
+
+5. **Visibility Cache Behavior:**
+   - Camo visibility checks cache hidden and visible results with asymmetric lifetimes so hidden states expire faster than visible states.
 
 ## Coding Patterns and Conventions
 
-- **Pascal Casing**: Used for class names and public methods (e.g., `ToggleActiveCamo`).
-- **Camel Casing**: Used for private variables and parameters (e.g., `flag` in `ToggleActiveCamo` method).
-- **Encapsulation**: Utilized consistently to manage state and behavior within classes such as `ActiveCamoApparel` and `CardboardBox`.
-- **Modular Design**: Separate classes are used for distinct features, promoting maintainability and scalability (e.g., see `CamoDrawTools` and `CamoUtility`).
+- **Naming Conventions:** 
+  - CamelCase for method names and PascalCase for class names are used consistently.
+  
+- **Organization:**
+  - Source files are categorized within the project directory, for example:
+    - `CompCamo` for camouflage-related functionalities.
+  
+- **File Summary:**
+  - C# source files are detailed with class and member documentation where possible.
+  
+- **Consistent Use of Regions:**
+  - Maintain organization within files with regions to encapsulate related functions.
 
 ## XML Integration
 
-The mod relies on XML for defining the new apparel and integrations:
+XML files are primarily used for patching biome and terrain data to integrate custom camouflage settings. Key XML patches are included for:
+- `Advanced Biomes`
+- `Biomes Vanilla`
+- `Nature's Pretty Sweet`
+- `Realistic Planets`
 
-- **Defs Folder**: Contains XML files that define new camouflage apparel and presets.
-- **DefModExtension**: Used in classes such as `CompCamoDefs` to extend regular functionality with camouflage-related properties.
-  
-When adding new items or properties:
-- Ensure that XML elements are correctly defined with attributes matching the properties of the classes they instantiate.
-- Use `<Defs>` to wrap item definition files, and `<ThingDef>` to define new items or features.
+Include precise tags and syntax as per RimWorld’s XML schema to ensure compatibility and stability.
 
 ## Harmony Patching
 
-A core component of this mod is utilizing Harmony for runtime method patching which allows for:
+**Dependency:** brrainz.harmony
 
-- **Method Prefixes/Suffixes**: To adjust game logic before or after existing methods run.
-- **Replacement**: For completely redirecting method calls.
-- **Maintaining Compatibility**: Ensuring other mods can coexist by not modifying original code excessively.
-
-To add a Harmony patch:
-- Use the `HarmonyPatching` class to manage and organize patch methods with the `[HarmonyPatch]` attribute.
-- Define the target method using attributes like `[HarmonyPatch(typeof(TargetType), "MethodName")]`.
+- **Patch with Caution:** 
+  - When using Harmony to patch methods, ensure that patches are non-destructive and compatible with other mods that might patch the same methods.
+  
+- **Documentation:** 
+  - Document your Harmony patches within the codebase to allow for easier troubleshooting and updates.
 
 ## Suggestions for Copilot
 
-- **Suggest Patterns**: For tasks such as toggling camouflage states or updating observer perceptions.
-- **Automate XML Suggestions**: Based on class attributes and field definitions in code files, suggest appropriate XML element configurations.
-- **Method Descriptions**: Help auto-document methods like those in `HarmonyPatching` as they are implemented.
+- **Autocomplete Suggestions:**
+  - Implement Copilot suggestions for repetitive pattern selections and simple function definitions.
 
-When utilizing GitHub Copilot, consider:
-- Drafting consistent method signatures and comments to guide the AI in generating relevant code suggestions.
-- Leveraging class-level documentation to inform Copilot of intended functionalities, particularly in utility classes like `CamoUtility` and `Observer_Setup`.
+- **Automation:**
+  - Utilize Copilot to automate unit tests for new features as they integrate with CAS functionalities.
 
-This guide should support new developers in contributing to the mod and ensure consistency across future updates and feature additions.
+- **Code Optimization:**
+  - Let Copilot suggest optimizations particularly in performance-heavy areas like stealth detection and rendering functions.
+
+- **Error-Handling:** 
+  - Use Copilot to suggest robust error-handling routines, especially crucial during mod load/unload sequences.
+
+- **XML Patch Utility:**
+  - Copilot can assist in generating XML patch templates and error-checking snippets for easier mod integration.
+
+This detailed guide provides a comprehensive starting point for utilizing GitHub Copilot in the development and enhancement of the Camouflage and Stealth (Continued) mod for RimWorld.
+
+## Project Solution Guidelines
+- Relevant mod XML files are included as Solution Items under the solution folder named XML, these can be read and modified from within the solution.
+- Use these in-solution XML files as the primary files for reference and modification.
+- The `.github/copilot-instructions.md` file is included in the solution under the `.github` solution folder, so it should be read/modified from within the solution instead of using paths outside the solution. Update this file once only, as it and the parent-path solution reference point to the same file in this workspace.
+- When making functional changes in this mod, ensure the documented features stay in sync with implementation; use the in-solution `.github` copy as the primary file.
+- In the solution is also a project called Assembly-CSharp, containing a read-only version of the decompiled game source, for reference and debugging purposes.
+- For any new documentation, update this copilot-instructions.md file rather than creating separate documentation files.
+
+
+## Hard rules (must follow)
+- Do NOT run commands that modify the repo (no git commit, git apply, dotnet format) unless explicitly asked.
+- Prefer minimal reads: read only the smallest code region needed (around the suspicious lines).
+

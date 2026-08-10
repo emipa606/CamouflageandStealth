@@ -1,6 +1,6 @@
 # [Camouflage and Stealth (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2196949737)
 
-![Image](https://i.imgur.com/buuPQel.png)
+![Image](https://img.litet.net/logos/Info.png)
 
 Update of peladors mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=2019776293
@@ -9,9 +9,17 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2019776293
 - For detailed description, download the [PDF](https://github.com/emipa606/CamouflageandStealth/raw/main/Source/CamouflageAndStealthNotes.pdf)
 - Also available is a [guide]( https://steamcommunity.com/workshop/discussions/18446744073709551615/4943253385021156834/?appid=294100) by 11Bullets
 
-![Image](https://i.imgur.com/pufA0kM.png)
+**Additional mods that use this framwork**
+
+
+- [CAS: Vanilla Armour Expanded](https://steamcommunity.com/sharedfiles/filedetails/?id=3481214322)
+- [CAS: Royalty](https://steamcommunity.com/sharedfiles/filedetails/?id=3483501869)
+
+
+
+![Image](https://img.litet.net/logos/Notice.png)
 	
-![Image](https://i.imgur.com/Z4GOv8H.png)
+![Image](https://img.litet.net/logos/OriginalDescription.png)
 
 # Overview
  V1.1
@@ -85,13 +93,13 @@ Japanese translation - Proxyer
 (CC BY-NC-SA 4.0)
 
 
-![Image](https://i.imgur.com/PwoNOj4.png)
+![Image](https://img.litet.net/logos/ReportingIssues.png)
 
 
 
 -  See if the the error persists if you just have this mod and its requirements active.
 -  If not, try adding your other mods until it happens again.
--  Post your error-log using the [Log Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404) or the standalone [Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404) and command Ctrl+F12
+-  Always post your log using the [Log Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404)
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
@@ -99,4 +107,4 @@ Japanese translation - Proxyer
 
  
 
-[![Image](https://img.shields.io/github/v/release/emipa606/CamouflageandStealth?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2196949737) | tags:  passive camouflage
+[![Image](https://img.shields.io/github/v/release/emipa606/CamouflageandStealth?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2196949737) | passive camouflage
