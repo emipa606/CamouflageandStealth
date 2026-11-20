@@ -6,7 +6,7 @@ using Verse.AI;
 namespace CompCamo.Patches;
 
 [HarmonyPatch(typeof(Toils_Goto), nameof(Toils_Goto.GotoCell), typeof(TargetIndex), typeof(PathEndMode))]
-public class Toils_Goto_GotoCell
+public static class Toils_Goto_GotoCell
 {
     [HarmonyPriority(800)]
     public static bool Prefix(ref Toil __result, TargetIndex ind, PathEndMode peMode)

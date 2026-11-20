@@ -50,7 +50,7 @@ public static class Camo_Setup
             {
                 if (compProperties.GetType() != typeof(CompProperties_GearCamo) ||
                     !(((CompProperties_GearCamo)compProperties).ActiveCamoEff > 0f) ||
-                    !((compProperties as CompProperties_GearCamo).CamoEnergyMax > 0f) ||
+                    !((compProperties as CompProperties_GearCamo)!.CamoEnergyMax > 0f) ||
                     thingDef.thingClass != typeof(Apparel))
                 {
                     continue;

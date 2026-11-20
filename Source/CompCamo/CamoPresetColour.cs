@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace CompCamo;
 
-public class CamoPresetColour
+public static class CamoPresetColour
 {
     private static Color Orange => new(0.870588243f, 0.509803951f, 0f, 1f);
 

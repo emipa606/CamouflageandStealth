@@ -5,7 +5,7 @@ using Verse;
 namespace CompCamo.Patches;
 
 [HarmonyPatch(typeof(CompColorableUtility), nameof(CompColorableUtility.SetColor))]
-public class CompColorableUtility_SetColor
+public static class CompColorableUtility_SetColor
 {
     [HarmonyPriority(0)]
     public static void Postfix(Thing t)

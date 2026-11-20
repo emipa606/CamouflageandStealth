@@ -4,7 +4,7 @@ using Verse.AI;
 
 namespace CompCamo;
 
-public class CamoAIUtility
+public static class CamoAIUtility
 {
     public static void CorrectLordForCamo(Pawn seer, Pawn target)
     {

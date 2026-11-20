@@ -4,7 +4,7 @@ using Verse;
 namespace CompCamo.Patches;
 
 [HarmonyPatch(typeof(Verb), nameof(Verb.CanHitTargetFrom))]
-public class Verb_CanHitTargetFrom
+public static class Verb_CanHitTargetFrom
 {
     [HarmonyPriority(800)]
     public static void Postfix(ref Verb __instance, ref bool __result, LocalTargetInfo targ)

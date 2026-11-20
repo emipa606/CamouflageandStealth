@@ -16,13 +16,13 @@ public class PawnCamoData : ThingComp
 
     public float PawnJungleCamo;
 
-    public float PawnnotDefinedCamo;
-
     public float PawnStoneCamo;
 
     public float PawnUrbanCamo;
 
     public float PawnWoodlandCamo;
+
+    public float PawnnotDefinedCamo;
 
     private Pawn Pawn
     {

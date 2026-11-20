@@ -3,7 +3,7 @@ using Verse;
 
 namespace CompCamo;
 
-public class CamoDefGet
+public static class CamoDefGet
 {
     public static string GetCamoDefBiome(BiomeDef biome)
     {

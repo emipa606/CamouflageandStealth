@@ -1,83 +1,65 @@
-# GitHub Copilot Instructions for RimWorld Modding: Camouflage and Stealth (Continued)
+# GitHub Copilot Instructions for Camouflage and Stealth (Continued) Mod
 
 ## Mod Overview and Purpose
 
-**Mod Name:** Camouflage and Stealth (Continued)
-
-**Purpose:** 
-The Camouflage and Stealth (CAS) framework allows other mod authors to enhance apparel and equipment with passive and active camouflage capabilities, and improve observation sight capabilities. This technology grants users the ability to blend into backgrounds via camouflage and enhances sight and stealth potential in the game, thereby enhancing the tactical experience in RimWorld.
+**Camouflage and Stealth (Continued)** is an update to the original Camouflage and Stealth (CAS) mod for RimWorld. It provides a framework for mod authors to implement camouflage and stealth features in apparel, both passive and active. The mod allows for the customization of camouflage patterns, terrain, and biome-specific camouflage. Additionally, it introduces observation sight improvements that can enhance the functionality of optical aids and gun optics on the battlefield.
 
 ## Key Features and Systems
 
-1. **Passive Camouflage:** 
-   - Provides pattern-based or color-coded camouflage helpful in blending with surroundings.
-   - Apparel-based passive camouflage is weighted by the wearer’s natural skin-covered body-part coverage, so small items contribute proportionally less than large garments across different races and body layouts.
+### Camouflage Types
+- **Passive Camouflage**: Traditional camouflage that uses patterns or coloration to merge the wearer into their environment.
+- **Active Camouflage**: Advanced technological camouflage that uses other methods to disguise the wearer, providing enhanced stealth capabilities.
 
-2. **Active Camouflage:** 
-   - Utilizes advanced technologies to disguise wearers, focusing on stealth and tactical advantages.
+### Observation Sight Improvements
+- Modifies sight capabilities of equipment to a limited extent.
+- Enables more functional gun optics and optical aids on the battlefield.
+- Acts as a counter to camouflage use.
 
-3. **Observation Enhancements:** 
-   - Improves sight capabilities through advanced optics, providing potential counters to camouflage.
+### XML Integration
+- The mod uses XML files to patch various RimWorld mods that support CAS, allowing for terrain and biome-specific camouflage.
 
-4. **Framework Utilization:** 
-   - Designed for other mod developers to integrate CAS into their mods through API and XML patches.
+### Harmony Patching
+- Utilizes Harmony patching to integrate with RimWorld's codebase, enabling the mod's functionality without modifying the original game files.
 
-5. **Visibility Cache Behavior:**
-   - Camo visibility checks cache hidden and visible results with asymmetric lifetimes so hidden states expire faster than visible states.
+### Expansion Mods
+- Several expansion mods are available for CAS, such as Power Armour, Cataphract Armour, Recon Armour, and Flak Armour.
 
 ## Coding Patterns and Conventions
 
-- **Naming Conventions:** 
-  - CamelCase for method names and PascalCase for class names are used consistently.
-  
-- **Organization:**
-  - Source files are categorized within the project directory, for example:
-    - `CompCamo` for camouflage-related functionalities.
-  
-- **File Summary:**
-  - C# source files are detailed with class and member documentation where possible.
-  
-- **Consistent Use of Regions:**
-  - Maintain organization within files with regions to encapsulate related functions.
+### C# Files
+- **CamoDefGet.cs**: Contains methods for retrieving camouflage definitions based on biome and terrain.
+- **CamoPresetColour.cs**: Defines color presets for camouflage patterns.
+- **ActiveCamoApparel.cs**: Manages active camouflage functionality, including energy consumption and toggling.
+- **CamoDrawTools.cs**: Handles the rendering of camouflage overlays.
+- **Camo_Setup.cs**: Sets up the mod and its components.
 
-## XML Integration
-
-XML files are primarily used for patching biome and terrain data to integrate custom camouflage settings. Key XML patches are included for:
-- `Advanced Biomes`
-- `Biomes Vanilla`
-- `Nature's Pretty Sweet`
-- `Realistic Planets`
-
-Include precise tags and syntax as per RimWorld’s XML schema to ensure compatibility and stability.
-
-## Harmony Patching
-
-**Dependency:** brrainz.harmony
-
-- **Patch with Caution:** 
-  - When using Harmony to patch methods, ensure that patches are non-destructive and compatible with other mods that might patch the same methods.
-  
-- **Documentation:** 
-  - Document your Harmony patches within the codebase to allow for easier troubleshooting and updates.
+### XML Files
+- **Patch_*.xml**: XML patch files for various mods that support CAS, enabling terrain and biome-specific camouflage.
 
 ## Suggestions for Copilot
 
-- **Autocomplete Suggestions:**
-  - Implement Copilot suggestions for repetitive pattern selections and simple function definitions.
+When using GitHub Copilot to assist with the Camouflage and Stealth (Continued) mod, consider the following guidelines:
 
-- **Automation:**
-  - Utilize Copilot to automate unit tests for new features as they integrate with CAS functionalities.
+### XML Integration
+- When adding new XML patch files for terrain or biome-specific camouflage, ensure that the patches are correctly formatted and target the appropriate RimWorld mods.
+- Use the existing patch files as a reference for structure and syntax.
 
-- **Code Optimization:**
-  - Let Copilot suggest optimizations particularly in performance-heavy areas like stealth detection and rendering functions.
+### Harmony Patching
+- When creating new Harmony patches, ensure that the patches are correctly targeted and that they do not interfere with the original game code.
+- Use the existing patches as a reference for structure and syntax.
 
-- **Error-Handling:** 
-  - Use Copilot to suggest robust error-handling routines, especially crucial during mod load/unload sequences.
+### C# Code
+- When adding new C# code, follow the existing coding patterns and conventions.
+- Ensure that new code is well-documented and follows the same naming conventions as the existing code.
+- Use the existing classes and methods as a reference for structure and syntax.
 
-- **XML Patch Utility:**
-  - Copilot can assist in generating XML patch templates and error-checking snippets for easier mod integration.
+### Testing
+- After making changes, thoroughly test the mod to ensure that it functions correctly with the rest of the RimWorld modding ecosystem.
+- Pay special attention to compatibility with other mods, especially those that use their own line of sight and detection mechanics (e.g., CE / CE:FT).
 
-This detailed guide provides a comprehensive starting point for utilizing GitHub Copilot in the development and enhancement of the Camouflage and Stealth (Continued) mod for RimWorld.
+## Conclusion
+
+The Camouflage and Stealth (Continued) mod is a powerful tool for mod authors to implement camouflage and stealth features in RimWorld. By following the coding patterns and conventions outlined in this guide, and by utilizing GitHub Copilot effectively, you can contribute to the continued development and improvement of this mod.
 
 ## Project Solution Guidelines
 - Relevant mod XML files are included as Solution Items under the solution folder named XML, these can be read and modified from within the solution.
@@ -91,4 +73,6 @@ This detailed guide provides a comprehensive starting point for utilizing GitHub
 ## Hard rules (must follow)
 - Do NOT run commands that modify the repo (no git commit, git apply, dotnet format) unless explicitly asked.
 - Prefer minimal reads: read only the smallest code region needed (around the suspicious lines).
+- When mentioning SonarQube issues, automatically use the SonarQube MCP service to fetch and address issues instead of making inferred fixes without querying SonarQube first.
+- When mentioning the rimworld log, automatically use the Rimworld MCP service to fetch the log.
 

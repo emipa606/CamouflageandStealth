@@ -193,7 +193,7 @@ public class ActiveCamoApparel : Apparel
         CamoState = 0;
     }
 
-    public override bool AllowVerbCast(Verb v)
+    public override bool AllowVerbCast(Verb verb)
     {
         return true;
     }

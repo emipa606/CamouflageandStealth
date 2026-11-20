@@ -4,7 +4,7 @@ using Verse;
 
 namespace CompCamo;
 
-public class CamoPresets
+public static class CamoPresets
 {
     private static List<string> getCamoTags()
     {

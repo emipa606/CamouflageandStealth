@@ -5,7 +5,7 @@ using Verse.AI;
 namespace CompCamo.Patches;
 
 [HarmonyPatch(typeof(JobDriver_Wait), "CheckForAutoAttack")]
-public class JobDriver_Wait_CheckForAutoAttack
+public static class JobDriver_Wait_CheckForAutoAttack
 {
     [HarmonyPriority(800)]
     public static bool Prefix(ref JobDriver_Wait __instance)

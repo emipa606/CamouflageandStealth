@@ -6,7 +6,7 @@ using Verse;
 
 namespace CompCamo;
 
-public class CamoUtility
+public static class CamoUtility
 {
     private static readonly float minCamoDist = 1f;
 
@@ -463,9 +463,9 @@ public class CamoUtility
 
         if (b)
         {
-            if (!target.Downed)
+            if (target is not { Downed: true })
             {
-                switch (target.stances.curStance)
+                switch (target?.stances.curStance)
                 {
                     case Stance_Mobile:
                     {
@@ -630,7 +630,7 @@ public class CamoUtility
 
         if (thing is Pawn)
         {
-            hostileTo = ghost is Pawn && thing.HostileTo(ghost) && !(thing.Position == ghost.Position) &&
+            hostileTo = ghost is Pawn && thing.HostileTo(ghost) && thing.Position != ghost.Position &&
                         !thing.Position.InHorDistOf(ghost.Position, NotPossibleMinDist);
         }
 

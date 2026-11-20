@@ -5,7 +5,7 @@ using Verse;
 
 namespace CompCamo;
 
-public class CamoGearUtility
+public static class CamoGearUtility
 {
     public static List<string> CamoTypes()
     {
@@ -442,6 +442,11 @@ public class CamoGearUtility
 
         var apparel = pawn?.apparel;
         if (apparel is not { WornApparelCount: > 0 })
+        {
+            return false;
+        }
+
+        if (pawn?.apparel.WornApparel == null)
         {
             return false;
         }

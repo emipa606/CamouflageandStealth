@@ -6,7 +6,7 @@ using PawnObserver = Observer.PawnObserver;
 namespace CompCamo.Patches;
 
 [HarmonyPatch(typeof(PawnCapacityWorker_Sight), nameof(PawnCapacityWorker_Sight.CalculateCapacityLevel))]
-public class PawnCapacityWorker_Sight_CalculateCapacityLevel
+public static class PawnCapacityWorker_Sight_CalculateCapacityLevel
 {
     [HarmonyPriority(800)]
     public static void Postfix(ref float __result, HediffSet diffSet)

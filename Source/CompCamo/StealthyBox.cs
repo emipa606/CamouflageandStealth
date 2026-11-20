@@ -4,7 +4,7 @@ using Verse;
 
 namespace CompCamo;
 
-public class StealthyBox
+public static class StealthyBox
 {
     public static bool IsWearingStealthBox(Pawn pawn, out Apparel box)
     {

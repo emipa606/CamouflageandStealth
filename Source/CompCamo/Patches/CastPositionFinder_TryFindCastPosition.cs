@@ -5,7 +5,7 @@ using Verse.AI;
 namespace CompCamo;
 
 [HarmonyPatch(typeof(CastPositionFinder), nameof(CastPositionFinder.TryFindCastPosition))]
-public class CastPositionFinder_TryFindCastPosition
+public static class CastPositionFinder_TryFindCastPosition
 {
     [HarmonyPriority(800)]
     public static bool Prefix(ref bool __result, CastPositionRequest newReq, out IntVec3 dest)

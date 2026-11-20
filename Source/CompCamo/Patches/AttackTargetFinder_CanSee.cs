@@ -5,7 +5,7 @@ using Verse.AI;
 namespace CompCamo.Patches;
 
 [HarmonyPatch(typeof(AttackTargetFinder), nameof(AttackTargetFinder.CanSee))]
-public class AttackTargetFinder_CanSee
+public static class AttackTargetFinder_CanSee
 {
     [HarmonyPriority(800)]
     public static void Postfix(ref bool __result, Thing seer, Thing target)

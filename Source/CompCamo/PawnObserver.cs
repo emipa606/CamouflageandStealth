@@ -111,11 +111,7 @@ public class PawnObserver : ThingComp
         }
 
         var pawnObserver = pawn.TryGetComp<PawnObserver>();
-        if (pawnObserver == null)
-        {
-            return;
-        }
 
-        pawnObserver.PawnSightOffset = num2 + num3;
+        pawnObserver?.PawnSightOffset = num2 + num3;
     }
 }

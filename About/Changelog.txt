@@ -1,5 +1,8 @@
 # Changelog for CamouflageandStealth
 
+1.7.0 - Mod updated for 1.7 and passed autotests
+
+
 1.6.1 - Updated the hidden-cache timer to be a lot shorter than the visible-chache timer. The percent Camouflage of an item should now be calculated correctly.
 Used DeepL to update translations for ChineseSimplified, French, Russian
 

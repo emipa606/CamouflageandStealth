@@ -7,7 +7,7 @@ namespace CompCamo.Patches;
 
 [HarmonyPatch(typeof(Toils_Combat), nameof(Toils_Combat.FollowAndMeleeAttack), typeof(TargetIndex), typeof(TargetIndex),
     typeof(Action))]
-public class Toils_Combat_FollowAndMeleeAttack
+public static class Toils_Combat_FollowAndMeleeAttack
 {
     [HarmonyPriority(800)]
     public static bool Prefix(ref Toil __result, TargetIndex targetInd, Action hitAction)
@@ -20,29 +20,23 @@ public class Toils_Combat_FollowAndMeleeAttack
             var curDriver = actor.jobs.curDriver;
             var thing = curJob.GetTarget(targetInd).Thing;
             var pawn = thing as Pawn;
-            if (thing.Spawned && !actor.CanReachImmediate(pawn, PathEndMode.Touch))
+            switch (thing.Spawned)
             {
-                bool b;
-                if (actor == null)
-                {
-                    b = false;
-                }
-                else
+                case true when !actor.CanReachImmediate(pawn, PathEndMode.Touch):
                 {
                     var mindState = actor.mindState;
-                    b = mindState?.meleeThreat != null;
-                }
+                    var b = mindState?.meleeThreat != null;
 
-                if (!b && pawn != null && CamoUtility.IsTargetHidden(pawn, actor))
-                {
-                    CamoAIUtility.CorrectJob(actor, pawn);
-                }
-            }
+                    if (!b && pawn != null && CamoUtility.IsTargetHidden(pawn, actor))
+                    {
+                        CamoAIUtility.CorrectJob(actor, pawn);
+                    }
 
-            if (!thing.Spawned)
-            {
-                curDriver.ReadyForNextToil();
-                return;
+                    break;
+                }
+                case false:
+                    curDriver.ReadyForNextToil();
+                    return;
             }
 
             if (thing != actor.pather.Destination.Thing ||
